@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environments
+venv/
+.env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# H5 files
+*.h5
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Documentation build artifacts
+doc/build/
+
+# Simulation outputs
+output/
+
+# Local scratch files, notes, and notebooks
+*~
+scratch/

@@ -1,0 +1,44 @@
+name: HarP CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        # Testing across current Python versions
+        python-version: ["3.13", "3.14"]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+        # Automatically cache pip downloads to speed up future runs
+        cache: 'pip'
+        cache-dependency-path: |
+          requirements.txt
+          requirements-dev.txt
+
+    - name: Install dependencies
+      run: |
+        # Delegates environment setup to your Makefile
+        make dev
+
+    - name: Run static type checking
+      run: |
+        make typecheck
+
+    - name: Run correctness and accuracy tests
+      run: |
+        make test

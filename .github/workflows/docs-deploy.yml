@@ -1,0 +1,44 @@
+# Builds the Sphinx docs and deploys to GitHub Pages on every push to
+# main. Adapted from Smilei's sphinx.yml
+# (https://github.com/SmileiPIC/Smilei/blob/master/.github/workflows/sphinx.yml):
+# using HarP's own Makefile/venv convention, and with an explicit
+# `permissions: contents: write` block added - many repos now default
+# the GITHUB_TOKEN to read-only, which would make
+# peaceiris/actions-gh-pages fail to push to gh-pages without this;
+
+name: Deploy Docs
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  deploy-docs:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.13"
+        cache: 'pip'
+        cache-dependency-path: |
+          requirements.txt
+          requirements-dev.txt
+
+    - name: Build documentation
+      run: |
+        make docs
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: doc/build/html
+        enable_jekyll: false
+        force_orphan: true

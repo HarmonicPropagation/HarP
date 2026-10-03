@@ -1,0 +1,32 @@
+# PR-time check only: builds the Sphinx docs on every PR to catch build
+# errors before merge.
+#
+# Adapted from Smilei's sphinx-build.yml
+# (https://github.com/SmileiPIC/Smilei/blob/master/.github/workflows/sphinx-build.yml),
+# but using HarP's own Makefile/venv convention
+
+name: Docs Build Check
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.13"
+        cache: 'pip'
+        cache-dependency-path: |
+          requirements.txt
+          requirements-dev.txt
+
+    - name: Build documentation
+      run: |
+        make docs

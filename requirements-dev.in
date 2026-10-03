@@ -1,0 +1,18 @@
+-c requirements.txt
+
+# Interactive analysis and notebook execution
+
+jupyter
+ipykernel
+ipywidgets
+matplotlib
+
+# Building documentation
+sphinx
+
+# Testing and benchmarking
+pytest
+pytest-benchmark
+
+# Status type checking
+mypy

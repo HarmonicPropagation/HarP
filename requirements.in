@@ -1,0 +1,6 @@
+# Core array and physics operations
+numpy
+scipy
+
+# I/O for large data chunks
+h5py
