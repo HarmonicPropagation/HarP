@@ -10,7 +10,8 @@ In the following, we consider a **cylindrically symmetric** geometry using radia
 We adopted the Fourier-transform convention 
 
 .. math::
-    \mathcal{E}(z,t)=1/(2\pi)^2 \iint_{-\infty}^{\infty} \mathcal{E}(k,\omega)e^{\mathbf{i}kz-\mathbf{i}\omega t}d\omega dk.
+    \mathcal{E}(z,t)&= \iint_{-\infty}^{\infty} \mathcal{E}(k,\omega)e^{\mathbf{i}kz-\mathbf{i}\omega t}dk d\omega \\
+    \mathcal{E}(k,\omega)&=1/(2\pi)^2 \iint_{-\infty}^{\infty} \mathcal{E}(z,t)e^{\mathbf{i}\omega t-\mathbf{i}kz}dz dt.
 
 ----
 

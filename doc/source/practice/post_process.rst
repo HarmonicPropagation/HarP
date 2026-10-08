@@ -46,7 +46,7 @@ For quantities that are independent of the harmonic order, such as the particle 
 Fundamental field intensity
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The third cell visualizes the intensity of the fundamental envelope field. It produces Fig. :numref:`figFundamental`.
+The third cell visualizes the intensity of the fundamental envelope field. It produces :numref:`figFundamental`.
 
 .. _figFundamental:
 
@@ -65,8 +65,8 @@ This figure illustrates how the fundamental field evolves as it propagates and i
 Electronic density
 ^^^^^^^^^^^^^^^^^^
 
-To show the effect of the ionisation, the fourth cell illustrates the electron density at the end of the interaction as a function of :math:`r` and :math:`z`. The cell produces Fig. :numref:`figIonisation`.
-As the field has not been modified yet at enter of the gas cell, it reaches higher intensity. Thus, the ionisation rate is higher and it leads to higher electron density.
+To show the effect of the ionisation, the fourth cell illustrates the electron density at the end of the interaction as a function of :math:`r` and :math:`z`. The cell produces :numref:`figIonisation`.
+As the field has not been modified yet at enter of the gas cell, it reaches higher intensity. Thus, it leads to higher ionisation degree, equivalently electron density.
 Inversely, after longer propagation into the gas cell the field has been dispersed by the electronic density, and is less likely to ionise.
 
 .. _figIonisation:
@@ -82,19 +82,23 @@ Inversely, after longer propagation into the gas cell the field has been dispers
 Attosecond field intensity
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the HarP approach, the harmonics envelopes are computed only at specific photons energy :math:`q\hbar \omega`. We may assume that the harmonic spectrum is estimated as a sum of Dirac of each computed harmonics, such that :math:`E(\omega')= \sum_q E_q \delta(\omega'-q\omega)`.
-Going back in time domain, the total electric field :math:`\mathcal{E}(t)` reads:
+In the HarP approach, the harmonics envelopes are computed only at specific photons energy :math:`q\hbar \omega`. We may assume that the harmonic spectrum is estimated as a sum of Dirac of each computed harmonics, such that :math:`E(\omega')= 1/2 \sum_q E_q \delta(\omega'-q\omega)+E_q^* \delta(\omega'+q\omega)` (where :math:`E_q^*` is the complex conjugate of :math:`E_q`).
+Going back in time domain, the real electric field :math:`\mathcal{E}(t)` reads:
+
+.. math::
+
+    \mathcal{E}(t) = \int d\omega' \mathcal{E}(\omega') e^{-\mathbf{i} \omega' t}  = \frac{1}{2}\sum_{q} E_q(t) e^{-\mathbf{i} q \omega t}+c.c.
+
+Assuming that we filter only the photons of energy in between :math:`[q_1\hbar \omega ,q_2 \hbar \omega]`, the reconstructed harmonic field is estimated as:
 
 .. math::
     :label: Etimefield
 
-    \mathcal{E}(t) = \frac{1}{2\pi}\int d\omega' \mathcal{E}(\omega') e^{-\mathbf{i} \omega' t} = \sum_{q\in [q_1,q_2]} E_q(t) e^{-\mathbf{i} q \omega t}
-
-
+    \mathcal{E}(t) \frac{1}{2}\sum_{q\in [q_1,q_2]} E_q(t) e^{-\mathbf{i} q \omega t}+c.c.
 
 The vector ``REt``, defined in the second cell, corresponds to the time-electric field Eq. :eq:`Etimefield` at :math:`z=L`. It is calculated for all the different potential lower threshold :math:`q_1 \in [1,59]` (odd) with :math:`q_2=59` the last computed harmonic.
-The time-intensity :math:`I(t)` being :math:`I(t)=\epsilon_0 c/2 \lvert \mathcal{E}(t)\rvert^2`.
-Considering a high pass filter with :math:`q_1=23` (equivalently photon of energy larger than :math:`\sim 35` eV), we obtain the harmonic intensity Fig. :numref:`figHarmonicIntensity` as a function of :math:`r` and :math:`t` in the left plot and as a function of :math:`t` at :math:`r=0` in the right one. It is computed in the fifth cell.
+The instantaneous time-intensity :math:`I(t)` being :math:`I(t)=\epsilon_0 c \lvert \mathcal{E}(t)\rvert^2`.
+Considering a high pass filter with :math:`q_1=23` (equivalently photon of energy larger than :math:`\sim 35` eV), we obtain the harmonic intensity :numref:`figHarmonicIntensity` (fifth cell) as a function of :math:`r` and :math:`t` in the left plot and as a function of :math:`t` at :math:`r=0` in the right one.
 
 .. _figHarmonicIntensity:
 
@@ -114,7 +118,7 @@ Conversion efficiency
 ^^^^^^^^^^^^^^^^^^^^^
 
 A specific diagnostic that computes the energy inside each harmonic has been implemented in the input file. 
-The conversion efficiency, ratio between the harmonic energy and the fundamental one, is shown in Fig. :numref:`figCE`, (computed in the sixth cell) as a function of the harmonic order at :math:`z=L` (left) and as a function of the propagation distance for :math:`q=23,27,31` (right).
+The conversion efficiency, ratio between the harmonic energy and the fundamental one, is shown in :numref:`figCE`, (computed in the sixth cell) as a function of the harmonic order at :math:`z=L` (left) and as a function of the propagation distance for :math:`q=23,27,31` (right).
 
 .. _figCE:
 

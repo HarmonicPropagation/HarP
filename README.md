@@ -2,16 +2,16 @@
 
 <img src="doc/source/_static/HarPLogo.svg" width=300 />
 
-[![HarP CI](https://github.com/Syttam/HarP/actions/workflows/ci.yaml/badge.svg)](https://github.com/Syttam/HarP/actions/workflows/ci.yaml)
-[![Deploy Docs](https://github.com/Syttam/HarP/actions/workflows/docs-deploy.yml/badge.svg)](https://github.com/Syttam/HarP/actions/workflows/docs-deploy.yml)
+[![HarP CI](https://github.com/HarmonicPropagation/HarP/actions/workflows/ci.yaml/badge.svg)](https://github.com/HarmonicPropagation/HarP/actions/workflows/ci.yaml)
+[![Deploy Docs](https://github.com/HarmonicPropagation/HarP/actions/workflows/docs-deploy.yml/badge.svg)](https://github.com/HarmonicPropagation/HarP/actions/workflows/docs-deploy.yml)
 
 HarP is an open source python tool for modelling high-order harmonic propagation during intense laser-matter interactions.
 It is designed to support experiments and provides fast, lightweight computational estimates of the generated harmonic properties.
 
-**Documentation:** sources for theory and practice guides live under `doc/source/` (Sphinx). A hosted version at [syttam.github.io/HarP](https://syttam.github.io/HarP/) is available.
+**Documentation:** sources for theory and practice guides live under `doc/source/` (Sphinx). A hosted version at [HarmonicPropagation.github.io/HarP](https://HarmonicPropagation.github.io/HarP/) is available.
 
-* [Theoretical Background](https://syttam.github.io/HarP/theory)
-* [First Simulation](https://syttam.github.io/HarP/installation) 
+* [Theoretical Background](https://HarmonicPropagation.github.io/HarP/theory)
+* [First Simulation](https://HarmonicPropagation.github.io/HarP/installation) 
 
 
 ## Requirements
