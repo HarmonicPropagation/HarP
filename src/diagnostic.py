@@ -106,7 +106,7 @@ class Diagnostics(HarpComponent):  # type: ignore[misc]
                 "Field":           lambda: sim.pulse.E[::self.every_r] if io == 0 else sim.harmonic.E[(io-1)*sim.main.nr:(io)*sim.main.nr:self.every_r],
                 "RealField":       lambda: sim.pulse.E[::self.every_r]*np.exp(1j*o*sim.pulse.Phase[iz]) if io == 0 else sim.harmonic.E[(io-1)*sim.main.nr:(io)*sim.main.nr:self.every_r]*np.exp(1j*o*sim.pulse.Phase[iz]),
                 "Phase":           lambda: (sim.pulse.Phase[iz]*self.dummy_r)[::self.every_r],
-                "S":               lambda: np.zeros(self.nrdiag) if io==0 else sim.harmonic.Pq[io-1, ::self.every_r],
+                "S":               lambda: np.zeros(self.nrdiag,dtype=complex) if io==0 else sim.harmonic.Pq[io-1, ::self.every_r],
                 "LocalRate":       lambda: sim.ionisation.local_rate[iz, ::self.every_r],
                 "IntegratedRate":  lambda: sim.ionisation.integrated_rate[iz, ::self.every_r],
                 "ElectronDensity": lambda: sim.medium.n_electron[::self.every_r],
