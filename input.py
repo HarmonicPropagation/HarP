@@ -121,7 +121,7 @@ Ionisation(
     table_path          = tables_path+"ionisation/ionisation_Ar_810_tdse.txt",
     skiprows            = 2,
     intensity_unit_Wcm2 = 1.,
-    rate_unit_SI        = 2.                   #add statistical factor of 2 on the rate due to double occupancy state
+    rate_unit_SI        = 2.         #add statistical factor of 2 on the rate due to double occupancy state SAE approx
 )
 
 
@@ -129,6 +129,7 @@ order = np.arange(3,60,2,dtype=int)#[23]
 Harmonic(
     order = order,                             #photon energy corresponding to order*hbar*omega
     table_path = tables_path+'tdse/dipoles_Ar_810.txt',
+    statistical_factor = 2.,        #add statistical factor of 2 on the dipole due to double occupancy state SAE approx
     intensity_unit_Wcm2 = 1e14
 )
 

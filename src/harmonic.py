@@ -19,6 +19,7 @@ class Harmonic(HarpComponent):  # type: ignore[misc]
     order: Any = None
     table_path: str = ""
     intensity_unit_Wcm2: float = 1e14
+    statistical_factor: float = 2.
     smoothing_function: Callable[[RealField], RealField] | None = None
 
     def __init__(self, **kwargs: Any) -> None:
@@ -113,9 +114,9 @@ class Harmonic(HarpComponent):  # type: ignore[misc]
                 raise ValueError(f"Harmonic order {q} not found in file. ")
             self.E_Tables.append(np.sqrt(np.array(Data)[:,0]*self.intensity_unit_Wcm2/main.I_r))
             if self.smoothing_function is None:
-                self.Dipoleabs_Tables.append(np.sqrt(np.array(Data)[:,1])*main.D_r_au)
+                self.Dipoleabs_Tables.append(np.sqrt(np.array(Data)[:,1])*main.D_r_au * self.statistical_factor)
             else:
-                self.Dipoleabs_Tables.append(self.smoothing_function(np.sqrt(np.array(Data)[:,1])*main.D_r_au))
+                self.Dipoleabs_Tables.append(self.smoothing_function(np.sqrt(np.array(Data)[:,1])*main.D_r_au*self.statistical_factor))
             self.Dipolearg_Tables.append(np.unwrap(np.array(Data)[:,2]))
 
     def compute_chi_at(self, q: int) -> None:
@@ -160,7 +161,7 @@ class Harmonic(HarpComponent):  # type: ignore[misc]
             self.compute_chi_at(q)
             self.k[q]  = self.compute_k(q)
             self.dk[q,:] = self.compute_dk(q)
-            self.Pq[q,:] = - 4.*self.order[q]**2 * self.medium.n_atomic*self.compute_dipoleabs[q](absE1)*np.exp(1j*(self.compute_dipolearg[q](absE1)+self.order[q]*phiE1))
+            self.Pq[q,:] = - 2.*self.order[q]**2 * self.medium.n_atomic*self.compute_dipoleabs[q](absE1)*np.exp(1j*(self.compute_dipolearg[q](absE1)+self.order[q]*phiE1))
 
     def update(self, sim: "Simulation") -> None:
         assert self.pulse is not None
@@ -185,7 +186,7 @@ class Harmonic(HarpComponent):  # type: ignore[misc]
             self.dk[q,:]     = self.compute_dk(q)
 
             self.Pqold[q,:]  = self.Pq[q,:]
-            self.Pq[q,:]     = - 4.*self.order[q]**2 * self.medium.n_atomic*self.compute_dipoleabs[q](absE1)*np.exp(1j*(self.order[q]*phiE1+self.compute_dipolearg[q](absE1)))
+            self.Pq[q,:]     = - 2.*self.order[q]**2 * self.medium.n_atomic*self.compute_dipoleabs[q](absE1)*np.exp(1j*(self.order[q]*phiE1+self.compute_dipolearg[q](absE1)))
             self.S[q*sim.main.nr:(q+1)*sim.main.nr]      = - (self.Pqold[q,:]/self.kold[q]+self.Pq[q,:]/self.k[q])*sim.solver.alphakdr2
         self.E[:]      = sim.solver.solveS(self)
         sim.main.harmonic_timer += time.time()-self.timer
