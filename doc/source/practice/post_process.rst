@@ -82,19 +82,19 @@ Inversely, after longer propagation into the gas cell the field has been dispers
 Attosecond field intensity
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the HarP approach, the harmonics envelopes are computed only at specific photons energy :math:`q\hbar \omega`. We may assume that the harmonic spectrum is estimated as a sum of Dirac of each computed harmonics, such that :math:`E(\omega')= 1/2 \sum_q E_q \delta(\omega'-q\omega)+E_q^* \delta(\omega'+q\omega)` (where :math:`E_q^*` is the complex conjugate of :math:`E_q`).
-Going back in time domain, the real electric field :math:`\mathcal{E}(t)` reads:
+In the HarP approach, the harmonics envelopes are computed only at specific photons energy :math:`q\hbar \omega`.
+The real electric field :math:`\mathcal{E}(t)` is defined as:
 
 .. math::
 
-    \mathcal{E}(t) = \int d\omega' \mathcal{E}(\omega') e^{-\mathbf{i} \omega' t}  = \frac{1}{2}\sum_{q} E_q(t) e^{-\mathbf{i} q \omega t}+c.c.
+    \mathcal{E}(t) = \frac{1}{2}\sum_{q} E_q(t) e^{-\mathbf{i} q \omega t}+c.c.
 
 Assuming that we filter only the photons of energy in between :math:`[q_1\hbar \omega ,q_2 \hbar \omega]`, the reconstructed harmonic field is estimated as:
 
 .. math::
     :label: Etimefield
 
-    \mathcal{E}(t) \frac{1}{2}\sum_{q\in [q_1,q_2]} E_q(t) e^{-\mathbf{i} q \omega t}+c.c.
+    \mathcal{E}(t) = \frac{1}{2}\sum_{q\in [q_1,q_2]} E_q(t) e^{-\mathbf{i} q \omega t}+c.c.
 
 The vector ``REt``, defined in the second cell, corresponds to the time-electric field Eq. :eq:`Etimefield` at :math:`z=L`. It is calculated for all the different potential lower threshold :math:`q_1 \in [1,59]` (odd) with :math:`q_2=59` the last computed harmonic.
 The instantaneous time-intensity :math:`I(t)` being :math:`I(t)=\epsilon_0 c \lvert \mathcal{E}(t)\rvert^2`.

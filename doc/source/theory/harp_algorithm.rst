@@ -118,7 +118,7 @@ The vector :math:`S^n=(S^n_0,S^n_1,...,S_{N_r-1}^n)` is the source term directly
 
 .. math::
 
-    P_j^n = 4 \rho_{a,j}^{n} d_j^n e^{\mathbf{i} q\phi_{1,j}^n},
+    P_j^n = 2 \rho_{a,j}^{n} d_j^n e^{\mathbf{i} q\phi_{1,j}^n},
 
 where :math:`\rho_{a,j}^n=\rho_a(r_j,z_n)`, :math:`d_j^n=d_q(E_1(r_j,z_n))` and :math:`\phi_{1,j}^n=\arg(E_1(r_j,z_n))`.
 Each of the :math:`S^n` components is defined by:
@@ -153,9 +153,9 @@ At the end of each time step, the ionisation rate is evaluated from the fundamen
 
 .. math::
 
-    I(r,z,t_n) = \int_0^{t_n} dt w(E_1(r,z,t)) \sim \sum_{i=0}^{n} \Delta t w(E_1(r,z,t_i))
+    Y(r,z,t_n) = \int_0^{t_n} dt w(E_1(r,z,t)) \sim \sum_{i=0}^{n} \Delta t w(E_1(r,z,t_i))
 
-is updated using a Riemann sum. The value of :math:`I(r,z,t_n)` (matrix of size :math:`N_r\times N_z`) is injected in the atomic and electronic density definition Eqs. :eq:`EqDensity`. 
+is updated using a Riemann sum. The value of :math:`Y(r,z,t_n)` (matrix of size :math:`N_r\times N_z`) is injected in the atomic and electronic density definition Eqs. :eq:`EqDensity`. 
 These new densities are used for the calculation of the propagation equations at the next time iteration.
 
 

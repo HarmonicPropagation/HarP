@@ -338,6 +338,13 @@ Ionisation
         :default: ``1``
 
         Factor applied to the rate row to express values in s :sup:`-1`.
+    
+    .. py:attribute:: statistical_factor
+
+        :type: Float
+        :default: ``2``
+
+        Statistical factor applied to the rate values when loading the table. If the tables have been computed withing the SAE approximation set ``statistical_factor=2`` to account for the spin degeneracy.
 
     .. py:attribute:: skiprows
 
@@ -358,7 +365,8 @@ Harmonic
         Harmonic(
             order = [23,25,27,29],        #photon energy corresponding to order*hbar*omega
             table_path = tables_path+'tdse/dipoles_Ar_810.txt',
-            intensity_unit_Wcm2 = 1e14
+            intensity_unit_Wcm2 = 1e14,
+            statistical_factor  = 2
         )
 
     .. py:attribute:: order
@@ -384,6 +392,13 @@ Harmonic
         :default: ``1e14``
 
         Factor applied to the intensity row to express values in W/cm\ :sup:`2`.
+    
+    .. py:attribute:: statistical_factor
+
+        :type: Float
+        :default: ``2``
+
+        Statistical factor applied to the dipole value when loading the table. If the tables have been computed withing the SAE approximation set ``statistical_factor=2`` to account for the spin degeneracy.
 
 ----
 

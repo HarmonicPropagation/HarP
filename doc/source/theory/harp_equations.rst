@@ -7,35 +7,33 @@ One of the earliest theoretical models capable of reproducing the main trends of
 The :program:`HarP` code aims to solve the equations introduced in this pioneering work that are re-derived in the current section.
 
 In the following, we consider a **cylindrically symmetric** geometry using radial and longitudinal coordinates :math:`(r,z)`.
-We adopted the Fourier-transform convention 
+We defined the real electric field and nonlinear polarisation through their :math:`q` th Fourier components :math:`\mathcal{E}_q` and :math:`\mathcal{P}_q`:
 
 .. math::
-    \mathcal{E}(z,t)&= \iint_{-\infty}^{\infty} \mathcal{E}(k,\omega)e^{\mathbf{i}kz-\mathbf{i}\omega t}dk d\omega \\
-    \mathcal{E}(k,\omega)&=1/(2\pi)^2 \iint_{-\infty}^{\infty} \mathcal{E}(z,t)e^{\mathbf{i}\omega t-\mathbf{i}kz}dz dt.
+    \mathcal{E}(r,z,t)&= \frac{1}{2} \sum_q \mathcal{E}_q(r,z)e^{-\mathbf{i}q \omega t} +c.c. \\
+    \mathcal{P}(r,z,t)&= \frac{1}{2} \sum_q \mathcal{P}_q(z,t)e^{-\mathbf{i}q \omega t} +c.c.
 
 ----
 
 Wave Equation
 ^^^^^^^^^^^^^
 
-The derivation begins from the wave equation in Fourier space for the electric field of the harmonic of order :math:`q`, denoted :math:`\mathcal{E}_q`:
+The derivation begins from the wave equation in Fourier space for the electric field of the harmonic of order :math:`q`:
 
 .. math::
     \nabla^2 \mathcal{E}_q + k_q^2 \mathcal{E}_q=-\frac{1}{\epsilon_0} \left(\frac{q\omega}{c}\right)^2 \mathcal{P}_q
 
-where :math:`\mathcal{P}_q` is the polarisation. The **polarisation** is assumed to be **induced solely by the fundamental field** (:math:`q=1`).
+The **polarisation** is assumed to be **induced solely by the fundamental field** (:math:`q=1`).
 The wave vector of the :math:`q` th harmonic is defined as :math:`k_q=nq\omega/c` where :math:`n` is the refractive index of the medium evaluated at energy :math:`q \hbar \omega` and position :math:`(r,z)`. 
-The index of refraction is determined by the atomic, electronic and ionic susceptibilities, denoted :math:`\chi_a`, :math:`\chi_e` and :math:`\chi_i`, respectively:
+**Neglecting the ionic susceptibility**, the index of refraction is determined by the atomic and electronic, denoted :math:`\chi_a` and :math:`\chi_e`, respectively:
 
 .. math::
-    n(q\omega,r,z) &= \sqrt{1+\chi_a(q\omega,r,z)+\chi_e(q\omega,r,z)+\chi_i(q\omega,r,z)}, \\
+    n(q\omega,r,z) &= \sqrt{1+\chi_a(q\omega,r,z)+\chi_e(q\omega,r,z)}, \\
     \chi_a(q \omega,r,z) &= -\rho_a(r,z)\frac{ e^2}{\epsilon_0 m_e q^2 \omega^2}\left[f_1(q\omega) -\mathbf{i} f_2(q\omega)\right], \\
-    \chi_e(q \omega,r,z) &= -\rho_e(r,z)\frac{ e^2}{\epsilon_0 m_e q^2 \omega^2}, \\
-    \chi_i(q \omega,r,z) &= -\rho_i(r,z)\frac{ Z^2 e^2}{\epsilon_0 m_i q^2 \omega^2}\left[f_1^*(q\omega) -\mathbf{i} f_2^*(q\omega)\right].
+    \chi_e(q \omega,r,z) &= -\rho_e(r,z)\frac{ e^2}{\epsilon_0 m_e q^2 \omega^2},
 
-Here :math:`f_1`, :math:`f_2`, and :math:`f_1^*`, :math:`f_2^*` represent respectively the atomic and ionic form factors. The atomic form factor :math:`f_2` is responsible for the absorption and should be understood as a positive quantity in agreement with [Henke1993]_ table.
-Here, :math:`\rho_a`, :math:`\rho_e`, and :math:`\rho_i` correspond to the atomic, electronic, and ionic densities.
-Due to the mass difference between electrons and ions, the contribution of the **ionic susceptibility is neglected**.
+Here :math:`f_1`, :math:`f_2`, represent the atomic form factors. The atomic form factor :math:`f_2` is responsible for the absorption and should be understood as a positive quantity in agreement with [Henke1993]_ table.
+Here, :math:`\rho_a` and :math:`\rho_e` correspond to the atomic and electronic densities.
 
 ----
 
@@ -45,7 +43,7 @@ Wavevector
 The wavevector is now expressed using a perturbative expansion: :math:`k_q(r,z)=k_{q,0}(z)+\delta k_q(r,z)`. 
 The zeroth-order term :math:`k_{q,0}` is assumed to be independent of the transverse coordinate,
 while the first-order perturbation :math:`\delta k_q` satisfies :math:`k_{q,0}(z) \gg \delta k_q(r,z)` everywhere in space. 
-Assuming a **low-density target** such that :math:`\chi_{a,e} \ll 1`, and introducing the initial target density :math:`n_g(z)=n_e(r,z)+n_a(r,z)` (assumed radially uniform at this stage), we define :math:`\forall q>1`:
+We assume a **low-density target** such that :math:`\chi_{a}, \chi_{e} \ll 1` and consider only the first ionisation relevant to the interaction such that the ionic density equals the electronic density. Thus, the initial target density is :math:`\rho_g(z)=\rho_e(r,z)+\rho_a(r,z)` (assumed radially uniform at this stage). We have :math:`\forall q>1`:
 
 .. math::
     :label: EqWavevectors
@@ -55,8 +53,8 @@ Assuming a **low-density target** such that :math:`\chi_{a,e} \ll 1`, and introd
         \frac{c}{q\omega} \delta k_{q}(r,z)= -\rho_e(r,z)\frac{e^2}{2\epsilon_0m_eq^2\omega^2}\left[1-f_1(q\omega)+\mathbf{i}f_2(q\omega)\right].
     \end{gathered}
 
-This decomposition follows the approach introduced in [LHuillier1992]_, [Antoine1996]_. 
-As discussed in [Antoine1996]_, an alternative formulation can be adopted by setting :math:`k_{q,0}=q\omega/c` 
+This decomposition follows the approach introduced in Refs. [LHuillier1992]_, [Antoine1996]_. 
+As discussed in Ref. [Antoine1996]_, an alternative formulation can be adopted by setting :math:`k_{q,0}=q\omega/c` 
 and including the spatial dependencies into the perturbation term: :math:`\delta k_q(r,z)=\chi_a(q\omega,r,z)/2+\chi_e(q\omega,r,z)/2`. 
 This latter approach is implemented for initial target profiles exhibiting transverse variations (see :doc:`namelist <../practice/namelist>`). 
 For radially uniform initial target profiles, the system defined in Eqs. :eq:`EqWavevectors` provides higher accuracy.
@@ -73,7 +71,7 @@ Adding the Kerr nonlinearity to the refractive index [Boyd2008]_ for :math:`q=1`
     \end{gathered}
 
 where :math:`\gamma` represents the second hyperpolarisability. The definition of the second hyperpolarisability may differ by a factor of 6 across different communities. 
-In :program:`HarP`, the definition of :math:`\gamma` is 6 times smaller than the value reported in [Soldán2001]_.
+In :program:`HarP`, the definition of :math:`\gamma` is 6 times smaller than the value reported in Ref. [Soldán2001]_.
 
 ----
 
@@ -123,12 +121,14 @@ Dipole Moment
 The non-linear polarisation term :math:`P_q` is defined through the atomic dipole moment :math:`d_q(r,z)` and the phase of the fundamental field :math:`\phi_1(r,z)`:
 
 .. math::
-    P_q(r,z) = 4\rho_a(r,z)d_q(r,z)e^{\mathbf{i}q\phi_1(r,z)}.
+    :label: EqPq
+
+    P_q(r,z) = 2\rho_a(r,z)d_q(r,z)e^{\mathbf{i}q\phi_1(r,z)}.
 
 This term, directly responsible for high-harmonic generation, contains the microscopic response of the atom interacting with the intense incident laser field. 
 It can be modelled using several theoretical frameworks. Numerous codes have already been developed for calculating the non-linear polarisability within the Strong Field Approximation (SFA) [Lewenstein1994]_. 
 A non-exhaustive list of such approaches includes [Priori2000]_, [Shon2000]_, [Gaarde2008]_, [Tosa2009]_, [Tosa2016]_, and [Schröder2025]_.
-While computationally efficient, these codes are limited by the SFA and can suffer from inaccuracies compared to  dipole moments calculated from the Time-Dependent Schrödinger Equation (TDSE).
+While computationally efficient, these codes are limited by the SFA and can suffer from inaccuracies compared to dipole moments calculated from the Time-Dependent Schrödinger Equation (TDSE).
 
 An alternative approach was introduced by [Vábek2025]_. In that procedure, the wave equation for the fundamental field is solved in the time domain.
 The microscopic response is then calculated at each time step by solving the 1D-TDSE under the Single Active Electron (SAE) approximation. 
@@ -147,9 +147,12 @@ A driving field featuring a five-cycle ramp-up, a five-cycle constant-amplitude 
 The interaction is simulated by solving the 3D-TDSE as modelled in [Carlstrom2022]_. 
 Once transient dynamics have subsided, the dipole moment is Fourier-transformed over the plateau region. Repeating this simulation across a range of peak laser intensities yields a map of the dipole response as a function of laser intensity and harmonic order for a given atomic species and driving wavelength.
 
-
 Since the dipole tables are associated with a specific wavelength, the tabulated approach requires a pulse duration that is long relative to the optical period (:math:`\mathbf{T_{fwhm}\gg 1/\omega}`). 
 Otherwise, spectral broadening of the fundamental field causes multiple photon energies to contribute to harmonic generation.
+
+.. warning::
+    Because of the spin degeneracy in the SAE approximation, the tabulated dipole moment and ionisation rate are a factor of 2 smaller than the ones defined in Eqs. :eq:`EqPq` and :eq:`EqDensity`. This factor is taken into account when loading the tables through the ``statistical_factor`` arguments.
+
 
 ----
 

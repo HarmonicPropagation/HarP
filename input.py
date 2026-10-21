@@ -121,7 +121,8 @@ Ionisation(
     table_path          = tables_path+"ionisation/ionisation_Ar_810_tdse.txt",
     skiprows            = 2,
     intensity_unit_Wcm2 = 1.,
-    rate_unit_SI        = 2.         #add statistical factor of 2 on the rate due to double occupancy state SAE approx
+    rate_unit_SI        = 1.,
+    statistical_factor  = 2.        #add statistical factor of 2 on the rate due to double occupancy state SAE approx
 )
 
 

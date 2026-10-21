@@ -11,7 +11,7 @@ Physical Constraints
         #. The driving laser field is assumed to be **linearly polarised**.
         #. The interaction is restricted to **cylindrical geometry**.
         #. The **polarisation response** is assumed to be induced solely by the **local fundamental field**. With current laser technology, the harmonic energy is several orders of magnitude lower than that of the fundamental field. Additionally, for a long laser pulse with respect to its oscillation period, only the local field intensity should be responsible for the non-linear polarisation.
-        #. The electron density is related to the ion density by :math:`\rho_e = Z \rho_i`. Since the electron mass is negligible compared to the ion mass, the **ionic contribution to the susceptibility is neglected** relative to the electronic contribution.
+        #. The **ionic susceptibility is neglected** with respect to the electronic and atomic susceptibility.
         #. The propagation equations are solved within the **paraxial approximation**.
         #. The temporal envelope is assumed to vary slowly compared to the laser oscillation period. Consequently, the **laser duration** :math:`\mathbf{T_{fwhm}}` must be significantly **longer** than the reference **optical period** :math:`\mathbf{T_r = 1/\omega}`.
         #. Although users can provide their own tables for the microscopic response, the tables currently distributed with :program:`HarP` are obtained by solving the 3D time-dependent Schrödinger equation within the **single active electron approximation**, following the methodology of [KulanderShore1990]_.
