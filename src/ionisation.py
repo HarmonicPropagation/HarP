@@ -13,6 +13,7 @@ class Ionisation(HarpComponent):  # type: ignore[misc]
     skiprows: int = 0
     intensity_unit_Wcm2: float = 1.
     rate_unit_SI: float = 1.
+    statistical_factor: float = 2.
 
     def __init__(self, **kwargs: Any) -> None:
         super(Ionisation, self).__init__(**kwargs)
@@ -38,7 +39,7 @@ class Ionisation(HarpComponent):  # type: ignore[misc]
             raise Exception("   ERROR in the ionisation table path: file not found    ")
 
         self.E_Table    = np.sqrt(data[:, 0] * self.intensity_unit_Wcm2 / main.I_r)
-        self.Rate_Table = data[:, 1] * self.rate_unit_SI * main.T_r
+        self.Rate_Table = data[:, 1] * self.rate_unit_SI * main.T_r * self.statistical_factor
 
     def update(self, sim: Any, iz: int) -> None:
         assert self.local_rate is not None
