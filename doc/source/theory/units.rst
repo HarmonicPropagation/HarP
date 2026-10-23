@@ -50,14 +50,15 @@ In this system of units, the propagation equations introduced in :doc:`HarP Equa
 
 .. math::
      \begin{gathered}
-          \partial_r^2 E_q + \frac{1}{r}\partial_r E_q+ 2ik_{q,0}(z)\partial_z E_q +2k_{q,0} [\delta k_q(r,z)+ \Delta k_{q,0}(z)]E_q= - 4 q^2 \rho_a(r,z)d_q(r,z)e^{\mathbf{i}q\phi_1(r,z)}, \\
-          \,k_{1,0}(z)= 1+\rho_g(z)\frac{\alpha_0}{2}, \quad \delta k_{1}(r,z)= -\frac{\rho_e(r,z)}{2}(1+\alpha_0)+\rho_a(r,z)\frac{3 }{8}\gamma E_1^2(r,z), \\
-          \,k_{q,0}(z)= q-\frac{\rho_g(z)}{2q}[f_1(q)-\mathbf{i}f_2(q)], \quad \delta k_{q}(r,z)= -\frac{\rho_e(r,z)}{2q}\left[1-f_1(q)+\mathbf{i}f_2(q)\right].
+          \partial_r^2 E_q + \frac{1}{r}\partial_r E_q+ 2ik_{q,0}(z)\partial_z E_q +2k_{q,0} [\delta k_q(r,z)+ \Delta k_{q,0}(z)]E_q= - 2 q^2 \rho_a(r,z)d_q(r,z)e^{\mathbf{i}q\phi_1(r,z)}, \\
+          \,k_{1,0}(z)= 1+\rho_g(z)\frac{\alpha_0}{2}, \quad \quad \delta k_{1}(r,z)= -\frac{\rho_e(r,z)}{2}(1+\alpha_0)+\rho_a(r,z)\frac{3 }{8}\gamma E_1^2(r,z), \\
+          \,k_{q,0}(z)= q-\frac{\rho_g(z)}{2q}[f_1(q)-\mathbf{i}f_2(q)], \quad \quad \delta k_{q}(r,z)= -\frac{\rho_e(r,z)}{2q}\left[1-f_1(q)+\mathbf{i}f_2(q)\right], \\
+          \rho_a(r,z,t) = \rho_g(r,z)e^{-\int^t w(E_1(r,z,t'))dt'}, \quad \quad \rho_e(r,z,t) = \rho_g(r,z)-\rho_a(r,z,t).
      \end{gathered}
 
 The partial derivatives are normalised to the reference length :math:`L_r` or time :math:`T_r`. The envelope profile :math:`E_q` is expressed in units of :math:`E_r`, the dipole :math:`d_q` in units of :math:`D_r`, and the polarisation and second hyperpolarisability are normalised to :math:`\alpha_r` and :math:`\gamma_r`, respectively. 
 Likewise, the wavevectors :math:`k_{q,0}` and their perturbations :math:`\delta k_q` are normalised to :math:`L_r`. 
 Consequently, the vacuum wavevector of the q-th harmonic simply equals :math:`q`.
-The system is closed by the equations governing electron and atomic densities, both expressed in units of :math:`\rho_r`.
+The equations governing electron and atomic densities are expressed in units of :math:`\rho_r`.
 
 This set of equations is solved using the numerical procedure described in :doc:`HarP Algorithm <harp_algorithm>` section.

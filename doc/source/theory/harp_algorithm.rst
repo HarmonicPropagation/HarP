@@ -22,7 +22,7 @@ The loop consists of performing the following operations at each time step :math
 
 .. _HarP_loop:
 
-.. figure:: ../_static/HarPLoop2.png
+.. figure:: ../_static/HarPloop.png
   :width: 9cm
   
   Schematic representation of the HarP loop. At each time slice, the propagation equation is resolved using the Crank-Nicolson scheme. Densities are calculated from the driver field and used in the definition of the propagation equation at the next time step.

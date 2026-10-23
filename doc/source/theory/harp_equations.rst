@@ -159,7 +159,7 @@ Otherwise, spectral broadening of the fundamental field causes multiple photon e
 Density
 ^^^^^^^
 
-As the intense laser pulse propagates through the target medium, it ionises the gas, altering the local atomic and electronic densities. This evolution is governed by the population rate equations:
+As the intense laser pulse propagates through the target medium, it ionises the gas, altering the local atomic and electronic densities. This evolution is governed by the population equations:
 
 
 .. math::

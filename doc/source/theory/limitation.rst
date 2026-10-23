@@ -16,7 +16,7 @@ Physical Constraints
         #. The temporal envelope is assumed to vary slowly compared to the laser oscillation period. Consequently, the **laser duration** :math:`\mathbf{T_{fwhm}}` must be significantly **longer** than the reference **optical period** :math:`\mathbf{T_r = 1/\omega}`.
         #. Although users can provide their own tables for the microscopic response, the tables currently distributed with :program:`HarP` are obtained by solving the 3D time-dependent Schrödinger equation within the **single active electron approximation**, following the methodology of [KulanderShore1990]_.
         #. The target **density** must be much **lower than the reference density** :math:`\mathbf{\rho_r}`. This condition ensures laser propagation through the target (no reflection), and guarantees the validity of the refraction index perturbation approximation :math:`\chi \ll 1`.
-        #. Within the single active electron approximation, only the first **ionisation** is considered significant.
+        #. Within the single active electron approximation, **only the first ionisation** is considered significant.
         #. The atomic form factors are provided by the user. While their values are well established for high-energy photons [Henke1993]_, [NIST]_, significant discrepancies may exist for low-order harmonics depending on the approximations used in the calculation. Consequently, variations of the absorption cross-section may give rise to differences in harmonics properties.
 
 ----

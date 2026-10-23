@@ -25,7 +25,7 @@ To refer this work, please cite:
 ```bibtex
 @article{pouyez2026harp,
   title={HarP: a simulation tool for high harmonic generation and propagation in gases},
-  author={Pouyez, Mattys and Maslarova, Dominika and Hagedorn, Linus and Jansson, Patrik and L’huillier, Anne and Weissenbilder, Robin and Carlstr{\"o}m, Stefanos and F{\"u}l{\"o}p, T{\"u}nde},
+  author={Pouyez, Mattys and Maslarova, Dominika and Hagedorn, Linus and Jansson, Patrik and Weissenbilder, Robin and Carlstr{\"o}m, Stefanos and L’Huillier, Anne and F{\"u}l{\"o}p, T{\"u}nde},
   journal={TODO arXiv},
   year={2026}
 }
