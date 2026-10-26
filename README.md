@@ -11,7 +11,7 @@ It is designed to support experiments and provides fast, lightweight computation
 **Documentation:** sources for theory and practice guides live under `doc/source/` (Sphinx). A hosted version at [HarmonicPropagation.github.io/HarP](https://HarmonicPropagation.github.io/HarP/) is available.
 
 * [Theoretical Background](https://HarmonicPropagation.github.io/HarP/theory)
-* [First Simulation](https://HarmonicPropagation.github.io/HarP/installation) 
+* [First Simulation](https://HarmonicPropagation.github.io/HarP/practice/installation) 
 
 
 ## Requirements
