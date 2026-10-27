@@ -14,7 +14,7 @@ extensions = []
 templates_path = ['_templates']
 exclude_patterns = []
 
-
+suppress_warnings = ['toc.not_included']
 numfig = True
 
 html_theme_path = ['.']

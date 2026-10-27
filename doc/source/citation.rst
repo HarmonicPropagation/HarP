@@ -1,4 +1,11 @@
-@misc{pouyez2026harp,
+Cite
+----
+
+If you use HarP in your research, please cite it with the following BibTeX entry:
+
+.. code-block:: bibtex
+
+    @misc{pouyez2026harp,
       title={HarP: a simulation tool for high-order harmonic generation and propagation in gases}, 
       author={Mattys Pouyez and Dominika Maslarova and Linus Hagedorn and Patrik Jansson and Robin Weissenbilder and Stefanos Carlström and Anne L'Huillier and Tünde Fülöp},
       year={2026},
@@ -6,4 +13,4 @@
       archivePrefix={arXiv},
       primaryClass={physics.optics},
       url={https://arxiv.org/abs/2610.35440}, 
-}
+    }
