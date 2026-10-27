@@ -23,11 +23,14 @@ It is designed to support experiments and provides fast, lightweight computation
 To refer this work, please cite:
 
 ```bibtex
-@article{pouyez2026harp,
-  title={HarP: a simulation tool for high harmonic generation and propagation in gases},
-  author={Pouyez, Mattys and Maslarova, Dominika and Hagedorn, Linus and Jansson, Patrik and Weissenbilder, Robin and Carlstr{\"o}m, Stefanos and L’Huillier, Anne and F{\"u}l{\"o}p, T{\"u}nde},
-  journal={TODO arXiv},
-  year={2026}
+@misc{pouyez2026harp,
+      title={HarP: a simulation tool for high-order harmonic generation and propagation in gases}, 
+      author={Mattys Pouyez and Dominika Maslarova and Linus Hagedorn and Patrik Jansson and Robin Weissenbilder and Stefanos Carlström and Anne L'Huillier and Tünde Fülöp},
+      year={2026},
+      eprint={2610.35440},
+      archivePrefix={arXiv},
+      primaryClass={physics.optics},
+      url={https://arxiv.org/abs/2610.35440}, 
 }
 ```
 
