@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>First Simulation &#8212; HarP 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/smilei_theme.css?v=526adb52" />
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Post-Process" href="post_process.html" />
+    <link rel="prev" title="Namelist" href="namelist.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      scale: 95,
+      availableFonts: ["TeX"]
+    }
+  });
+  </script>
+   
+  </head><body>
+
+<div id="smallScreenMenu" class="off">
+
+    
+    <div class="toctree-smilei">
+        <ul>
+                <li class="outer">
+                    <a href="../theory/units.html">Units</a>
+                </li>
+                <li class="outer">
+                    <a href="../theory/harp_equations.html">HarP Equations</a>
+                </li>
+                <li class="outer">
+                    <a href="../theory/harp_algorithm.html">HarP Algorithm</a>
+                </li>
+                <li class="outer">
+                    <a href="../theory/vacuum_propagation.html">Far Field Propagation</a>
+                </li>
+                <li class="outer">
+                    <a href="../theory/limitation.html">Limitations</a>
+                </li>
+                <li class="outer">
+                    <a href="../theory/references.html">References</a>
+                </li>
+        </ul>
+        <hr />
+        <ul>
+                <li class="outer">
+                    <a href="namelist.html">Namelist</a>
+                </li>
+            </ul>
+                <ul>
+<li><a class="reference internal" href="#">First Simulation</a><ul>
+<li><a class="reference internal" href="#windows-users">Windows Users</a></li>
+<li><a class="reference internal" href="#linux-or-mac-users">Linux or Mac Users</a></li>
+<li><a class="reference internal" href="#first-run">First Run</a></li>
+<li><a class="reference internal" href="#additional-features">Additional features</a></li>
+</ul>
+</li>
+</ul>
+
+            <ul>
+                <li class="outer">
+                    <a href="post_process.html">Post-Process</a>
+                </li>
+        </ul>
+        <hr />
+    </div>
+
+</div>
+<div id="hcontainer">
+    <div id="nav_positioner">
+        <div id="nav">
+            <div id="nav_button" onclick="toggleNav()">
+                Sections
+            </div>
+            <div id="nav_list" class="toctree-smilei">
+                <div id="nav_title"><a href="#">First Simulation</a></div>
+                <ul>
+<li><a class="reference internal" href="#">First Simulation</a><ul>
+<li><a class="reference internal" href="#windows-users">Windows Users</a></li>
+<li><a class="reference internal" href="#linux-or-mac-users">Linux or Mac Users</a></li>
+<li><a class="reference internal" href="#first-run">First Run</a></li>
+<li><a class="reference internal" href="#additional-features">Additional features</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="headercolor">
+    </div>
+    <div class="hpositioner">
+        <div class="header">
+        <div class="logo">
+            <a href="../index.html">
+                <img class="logo" src="../_static/HarPLogoWhite.svg" alt="Logo" />
+            </a>
+        </div>
+        <div class="menu"
+            id="menu_Theory"
+            
+        >
+            <div id="menuButton_Theory" class="menuButton"
+                 onmouseenter="prepareMenu('menu_Theory')"
+                 onmousedown="event.preventDefault()"
+            >
+                <a href="../theory.html">
+                    <span>Theory</span>
+                </a>
+            </div>
+            <div class="off" onmouseleave="leaveMenu('menu_Theory',this)">
+                <div class="toctree-smilei">
+                    <ul>
+                        <li class="outer">
+                            <a href="../theory/units.html">Units</a>
+                        </li>
+                        <li class="outer">
+                            <a href="../theory/harp_equations.html">HarP Equations</a>
+                        </li>
+                        <li class="outer">
+                            <a href="../theory/harp_algorithm.html">HarP Algorithm</a>
+                        </li>
+                        <li class="outer">
+                            <a href="../theory/vacuum_propagation.html">Far Field Propagation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="../theory/limitation.html">Limitations</a>
+                        </li>
+                        <li class="outer">
+                            <a href="../theory/references.html">References</a>
+                        </li>
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="last menu"
+            id="menu_Practice"
+            style="font-weight:bold"
+        >
+            <div id="menuButton_Practice" class="menuButton"
+                 onmouseenter="prepareMenu('menu_Practice')"
+                 onmousedown="event.preventDefault()"
+            >
+                <a href="../practice.html">
+                    <span>Practice</span>
+                </a>
+            </div>
+            <div class="off" onmouseleave="leaveMenu('menu_Practice',this)">
+                <div class="toctree-smilei">
+                    <ul>
+                        <li class="outer">
+                            <a href="namelist.html">Namelist</a>
+                        </li>
+                        <li >
+                            <a href="#">First Simulation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="post_process.html">Post-Process</a>
+                        </li>
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+            var es=document.getElementsByClassName("menuButton"), i=0;
+            var evt = "ontouchend" in document ? "touchend" : "click";
+            for( var i=0; i<es.length; i+=1 ) {
+                es[i].addEventListener(evt, function(a){ return function(){toggleMenu(a)};}(es[i].parentNode.id));
+            }
+        </script>
+        
+        <div id="searchbox" role="search" style="display:none">
+            <form class="search" action="../search.html" method="get">
+              <input type="text" name="q" placeholder="Search" id="searchinput" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+        
+        <div id="searchicon" onclick="openSearch()" style="display:block">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 80 120">
+              <g transform="translate(0,-932.36216)" >
+                <circle
+                   r="25" cy="977.51044" cx="38.078663"
+                   style="opacity:1;fill:none;stroke:#ffffff;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                <rect
+                   transform="matrix(0.36717877,0.93015039,-0.93427297,0.35655858,0,0)"
+                   rx="4.9996676" ry="7.4995141"
+                   y="316.16959" x="947.6142"
+                   height="14.117695" width="46.476151"
+                   style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;" />
+                <path
+                   d="m 41.383282,962.25996 a 15,15 0 0 1 11.660107,11.6355"
+                   style="opacity:1;fill:none;stroke:#ffffff;stroke-width:3;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+              </g>
+            </svg>
+        </div>
+        <div id="closesearchicon" onclick="closeSearch()" style="display:none">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 80 120">
+              <g
+                 transform="translate(0,-932.36216)">
+                <path
+                   d="m 10,962.36216 60,60.00004"
+                   style="fill:none;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+                <path
+                   d="M 70,962.36216 10,1022.3622"
+                   style="fill:none;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+              </g>
+            </svg>
+        </div>
+        
+        <div id="smallScreenMenuButton" onclick="toggleSmallScreenMenu(event)">
+            <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"
+               viewBox="-20 -20 140 140">
+              <g  style="fill:#ffffff;stroke:none;">
+                <circle cx="15" cy="20" r="5" />
+                <circle cx="35" cy="20" r="5" />
+                <circle cx="85" cy="20" r="5" />
+                <rect width="50" height="10" x="35" y="15" rx="0" ry="0" />
+                <circle cx="15" cy="40" r="5" />
+                <circle cx="35" cy="40" r="5" />
+                <circle cx="85" cy="40" r="5" />
+                <rect width="50" height="10" x="35" y="35" rx="0" ry="0" />
+                <circle cx="15" cy="60" r="5" />
+                <circle cx="35" cy="60" r="5" />
+                <circle cx="85" cy="60" r="5" />
+                <rect width="50" height="10" x="35" y="55" rx="0" ry="0" />
+                <circle cx="15" cy="80" r="5" />
+                <circle cx="35" cy="80" r="5" />
+                <circle cx="85" cy="80" r="5" />
+                <rect width="50" height="10" x="35" y="75" rx="0" ry="0" />
+              </g>
+            </svg>
+        </div>
+        
+    </div>
+    
+</div>
+</div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="first-simulation">
+<h1>First Simulation<a class="headerlink" href="#first-simulation" title="Link to this heading">¶</a></h1>
+<p>This section is a complete tutorial to download and run your first <strong>HarP</strong> simulation.</p>
+<p>HarP relies on a Unix-like environment (such as Linux or macOS) to run its Makefile. The Makefile creates and sets up all the libraries required to run your first simulation in a specific Python environment.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>For users who work with their own python environment</strong>, you can download the repository directly from the <a class="reference external" href="https://github.com/Syttam/HarP">HarP GitHub</a> page and go directly to the <strong>First Run</strong> section.
+We do not recommend this approach since problems can arise from the user libraries versions. Make sure to have <em>numpy, scipy, h5py</em> libraries up to date for the run, as well as <em>jupyter notebook</em> for the example of post-process analysis.</p>
+</div>
+<hr class="docutils" />
+<section id="windows-users">
+<h2>Windows Users<a class="headerlink" href="#windows-users" title="Link to this heading">¶</a></h2>
+<p>If you are on Windows, the officially supported and recommended workflow is to use the <strong>Windows Subsystem for Linux (WSL2)</strong>.</p>
+<ol class="arabic">
+<li><p>Open PowerShell as Administrator and install WSL with Ubuntu:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">wsl</span> <span class="p">-</span><span class="n">-install</span>
+</pre></div>
+</div>
+</li>
+<li><p>Once your computer restarts and your Ubuntu terminal is ready, ensure the basic build tools and Python are installed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>make<span class="w"> </span>python3<span class="w"> </span>python3-venv<span class="w"> </span>python3-pip
+</pre></div>
+</div>
+</li>
+<li><p><strong>Important for performance:</strong> Ensure you clone the HarP repository directly into your Linux file system (e.g., <code class="docutils literal notranslate"><span class="pre">~/src/</span></code>) rather than your mounted Windows drive (<code class="docutils literal notranslate"><span class="pre">/mnt/c/</span></code>). File operations are significantly faster inside the native Linux filesystem.</p></li>
+</ol>
+<p>From this point on, you can follow the standard Linux download and installation instructions using your WSL terminal. Modern IDEs like VS Code and PyCharm feature dedicated WSL extensions that allow you to edit the code in Windows while the solver runs seamlessly in Linux.</p>
+</section>
+<hr class="docutils" />
+<section id="linux-or-mac-users">
+<h2>Linux or Mac Users<a class="headerlink" href="#linux-or-mac-users" title="Link to this heading">¶</a></h2>
+<p>Clone the latest version of HarP from GitHub:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>path/where/you/want/to/have/it/
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Syttam/HarP.git
+</pre></div>
+</div>
+<p>HarP uses a Makefile to simplify environment setup and dependency management across different operating systems.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The Makefile requires Python 3.13+ (CI tests 3.13 and 3.14).</p>
+</div>
+<p>To create an isolated Python virtual environment (<code class="docutils literal notranslate"><span class="pre">.venv</span></code>) and install the core dependencies required to run your first simulation, navigate to the repository root and run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>init
+</pre></div>
+</div>
+<p>If your plan is to use the post-processing Jupyter notebook provided, you should instead install the development dependencies.
+This command will set up the environment with all necessary analysis and testing packages:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>dev
+</pre></div>
+</div>
+<p>Once completed, remember to activate the virtual environment before running any scripts manually:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+</pre></div>
+</div>
+<p>You are now in position to make your first simulation <a class="reference internal" href="#first-run"><span class="std std-ref">First Run</span></a>.</p>
+<hr class="docutils" />
+</section>
+<section id="first-run">
+<span id="id1"></span><h2>First Run<a class="headerlink" href="#first-run" title="Link to this heading">¶</a></h2>
+<p>Before running your first simulation, it is recommended to create a dedicated working directory to store all input and output files.
+This keeps your simulation files separate from the HarP source code, which generally does not need to be modified.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>first_simulation
+<span class="nb">cd</span><span class="w"> </span>first_simulation
+</pre></div>
+</div>
+<p>An example input file, <code class="docutils literal notranslate"><span class="pre">input.py</span></code>, is provided in the repository. It describes a simple physical configuration in which a <span class="math notranslate nohighlight">\(810\)</span> nm laser with <span class="math notranslate nohighlight">\(2.5 \times 10^{14}\)</span> W/cm<sup>2</sup> peak vacuum intensity propagates through a uniform Argon gas cell.
+The simulation computes the fundamental field together with harmonic orders ranging from 3 to 59, as set by the <code class="docutils literal notranslate"><span class="pre">order</span></code> array in <code class="docutils literal notranslate"><span class="pre">input.py</span></code>.</p>
+<p>Copy the example input file, <code class="docutils literal notranslate"><span class="pre">input.py</span></code>, into your working directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>path/to/HarP/input.py<span class="w"> </span>.
+</pre></div>
+</div>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">input.py</span></code> writes its diagnostics next to itself (via <code class="docutils literal notranslate"><span class="pre">diag_path</span> <span class="pre">=</span> <span class="pre">os.path.dirname(os.path.abspath(__file__))</span> <span class="pre">+</span> <span class="pre">os.sep</span></code>), so output lands in your working directory rather than inside the <strong class="program">HarP</strong> repository - override <code class="docutils literal notranslate"><span class="pre">diag_path</span></code> in your own copy if you want it somewhere else.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The path that points to the tables responsible for the microscopic description, <code class="docutils literal notranslate"><span class="pre">tables_path</span></code> (line 80 of <code class="docutils literal notranslate"><span class="pre">input.py</span></code>), is resolved relative to the directory <strong class="program">HarP</strong> is <em>run from</em>. If you run the simulation from somewhere other than the <strong class="program">HarP</strong> repository itself, replace:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tables_path</span> <span class="o">=</span> <span class="s1">&#39;tables/&#39;</span>
+</pre></div>
+</div>
+<p>with the absolute path:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tables_path</span> <span class="o">=</span> <span class="s1">&#39;path/to/HarP/tables/&#39;</span>
+</pre></div>
+</div>
+</div>
+<dl class="simple">
+<dt>The diagnostics are defined at the end of <code class="docutils literal notranslate"><span class="pre">input.py</span></code>. By default, the example enables four diagnostics:</dt><dd><ul class="simple">
+<li><p>the harmonic energy as a function of the propagation distance,</p></li>
+<li><p>the electric field envelope <span class="math notranslate nohighlight">\(\mathcal{E}_q\)</span> in <span class="math notranslate nohighlight">\((r,z,t)\)</span> space,</p></li>
+<li><p>the atomic density in <span class="math notranslate nohighlight">\((r,z,t)\)</span> space,</p></li>
+<li><p>the electronic density in <span class="math notranslate nohighlight">\((r,z,t)\)</span> space,</p></li>
+</ul>
+</dd>
+</dl>
+<p>Additional diagnostics, such as gas density profiles or far-field distributions, can be enabled before running the simulation.</p>
+<p>You can then start the simulation with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>path/to/HarP/HarP.py<span class="w"> </span>input.py
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Make sure that you have enough memory to store the different diagnostics (<span class="math notranslate nohighlight">\(\sim 300\)</span> MB of data with the provided input file.)</p>
+</div>
+<p>As an indication, using <span class="math notranslate nohighlight">\(N_q = 30\)</span>, <span class="math notranslate nohighlight">\(N_r = 512\)</span>, <span class="math notranslate nohighlight">\(N_z = 256\)</span> and <span class="math notranslate nohighlight">\(N_t = 256\)</span>, the simulation completed in approximately <span class="math notranslate nohighlight">\(130\)</span> s (<span class="math notranslate nohighlight">\(\sim 2\)</span> min) on a MacBook Air M5 with 16 GB of memory.
+The time scaling is linear with <span class="math notranslate nohighlight">\(N_t,N_z,N_r\)</span> and <span class="math notranslate nohighlight">\(N_q\)</span>.</p>
+<p>Once the simulation is complete the different diagnostics are stored in <strong>HDF5</strong> files, and you can continue with the <a class="reference internal" href="post_process.html"><span class="doc">Post process analysis</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To run the simulation, you can also copy the launcher <code class="docutils literal notranslate"><span class="pre">HarP.py</span></code> in your working directory and modify the 5th line such that it refers to the absolute path of the <em>src</em> folder:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;path/to/HarP/src&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Then you can directly start the simulation in your working directory with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>HarP.py<span class="w"> </span>input.py
+</pre></div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="additional-features">
+<h2>Additional features<a class="headerlink" href="#additional-features" title="Link to this heading">¶</a></h2>
+<p>To access the documentation from your own laptop and not from the GitHub web pages, you can compile and open it with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>docs
+open<span class="w"> </span>doc/build/html/index.html
+</pre></div>
+</div>
+<p>You can also verify that the installation was successful (after the <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">dev</span></code> command) and that the code performs as expected on your hardware architecture with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span><span class="nb">test</span>
+</pre></div>
+</div>
+<p>The test suite mainly covers computational performance so far but should also cover correctness. If you wish to run only the performance benchmarks to evaluate the solver’s time complexity and memory scaling on your machine, you can instead use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>benchmark
+</pre></div>
+</div>
+<p><strong>A Note on Continuous Integration (CI)</strong></p>
+<p>You might see references to “Continuous Integration” or “CI” in the repository or on GitHub. In software development, CI is an automated quality-control system. Every time a new commit is pushed to GitHub, remote servers automatically launch fresh Linux and macOS environments, install HarP, and run the <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test</span></code> suite. This guarantees that new physics models or code adjustments do not accidentally break the solver for other users or on different operating systems.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      <div>
+      <a href="https://github.com/HarmonicPropagation/HarP">Github</a>
+      </div>
+      <div>
+        <a href="../citation.html">
+            Cite this work
+        </a>
+      </div>
+      
+      <div>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 9.1.0</a>
+      </div>
+      
+      <div class="footer">
+        Theme by 
+        <a href="https://github.com/SmileiPIC/Smilei">
+            Smilei 5.1
+        </a>
+      </div>
+    </div>
+    
+    <script type="text/javascript">
+        
+        var nav = document.getElementById("nav");
+        var nav_list = document.getElementById("nav_list");
+        var nav_button = document.getElementById("nav_button");
+        var smallScreenMenu = document.getElementById("smallScreenMenu");
+        var smallScreenMenuButton = document.getElementById("smallScreenMenuButton");
+        var searchicon = document.getElementById("searchicon");
+        var searchbox  = document.getElementById("searchbox");
+        var searchinput= document.getElementById("searchinput");
+        var menus = document.getElementsByClassName("menu");
+        for( var i=0; i<menus.length; i++ )
+            menus[i].active = false;
+        
+        
+        var ul = nav_list.getElementsByTagName("ul")[0], li;
+        var keep_nav = false;
+        if( ul ) {
+            li = ul.firstElementChild;
+            if( li ) {
+                if( li.getElementsByTagName("ul").length > 0 ) keep_nav = true;
+            }
+        }
+        if( keep_nav ) {
+            li.removeChild( li.firstElementChild );
+        } else {
+            document.getElementById("nav_positioner").removeChild( document.getElementById("nav") );
+        }
+        
+        function navOff() {
+            nav_list.style.display = "none";
+            nav_button.className = "";
+            nav.style.overflowY = "visible";
+        }
+        
+        function toggleNav() {
+            for( var i=0; i<menus.length; i++ )
+                menuOff( menus[i] );
+            if( nav_list.style.display != "inline-block" ) {
+                nav_list.style.display = "inline-block";
+                nav_button.className = "pushed";
+                nav.style.overflowY = "auto";
+            } else {
+                navOff();
+            }
+        }
+        
+        function toggleSmallScreenMenu(e) {
+            e.preventDefault();
+            if( smallScreenMenu.className != "on" ) {
+                smallScreenMenu.className = "on";
+                smallScreenMenuButton.className = "pushed";
+                document.documentElement.style.overflow = "hidden";
+            } else {
+                smallScreenMenu.className = "off";
+                smallScreenMenuButton.className = "";
+                document.documentElement.style.overflow = "";
+            }
+        }
+        
+        function prepareMenu(menu_id) {
+            var menu = document.getElementById(menu_id);
+            menu.timer1 = setTimeout(function(a){ return function(){thisMenuOnly(a)};}(menu_id), 100);
+            menu.addEventListener("mouseleave", function(a){ return function(){clearTimeout(a.timer1)};}(menu) );
+        }
+        
+        function leaveMenu(menu_id, source) {
+            var menu = document.getElementById(menu_id);
+            menu.timer2 = setTimeout(function(a){ return function(){menuOff(a)};}(menu), 1000);
+            source.addEventListener("mouseenter", function(a){ return function(){clearTimeout(a.timer2)};}(menu) );
+        }
+        
+        function menuOn( menu ) {
+            var divs = menu.getElementsByTagName("div");
+            if(nav_list) navOff();
+            divs[1].className = "on";
+            divs[0].className = "menuButton pushed";
+            menu.active = true;
+        }
+        function menuOff( menu ) {
+            var divs = menu.getElementsByTagName("div");
+            divs[1].className = "off";
+            divs[0].className = "menuButton";
+            menu.active = false;
+        }
+        
+        function thisMenuOnly(menu_id) {
+            var menu = document.getElementById(menu_id);
+            for( var i=0; i<menus.length; i++ )
+                if( i!=menu_id )
+                    menuOff( menus[i] );
+            menuOn( menu );
+        }
+        
+        function toggleMenu(menu_id) {
+            var menu = document.getElementById(menu_id);
+            if( menu.active ) {
+                menuOff( menu );
+            } else {
+                for( var i=0; i<menus.length; i++ )
+                    if( i!=menu_id )
+                        menuOff( menus[i] );
+                menuOn( menu );
+            }
+        }
+        
+        function openSearch() {
+            for( var i=0; i<menus.length; i++ ) {
+                menuOff( menus[i] );
+                menus[i].style.zIndex = "-1";
+            }
+            searchicon.style.display = "none";
+            closesearchicon.style.display = "block";
+            searchbox.style.display = "block";
+            searchinput.focus();
+        }
+        
+        function closeSearch() {
+            searchicon.style.display = "block";
+            closesearchicon.style.display = "none";
+            searchbox .style.display = "none";
+            for( var i=0; i<menus.length; i++ )
+                menus[i].style.zIndex = "0";
+        }
+        
+        
+        var documentDiv = document.getElementsByClassName("document")[0];
+        documentDiv.addEventListener('click', function (event) {
+            if(nav_list) navOff();
+            for( var i=0; i<menus.length; i++ )
+                menuOff( menus[i] );
+        });
+    </script>
+  </body>
+</html>

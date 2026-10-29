@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>HarP Algorithm &#8212; HarP 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/smilei_theme.css?v=526adb52" />
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Far Field Propagation" href="vacuum_propagation.html" />
+    <link rel="prev" title="HarP Equations" href="harp_equations.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      scale: 95,
+      availableFonts: ["TeX"]
+    }
+  });
+  </script>
+   
+  </head><body>
+
+<div id="smallScreenMenu" class="off">
+
+    
+    <div class="toctree-smilei">
+        <ul>
+                <li class="outer">
+                    <a href="units.html">Units</a>
+                </li>
+                <li class="outer">
+                    <a href="harp_equations.html">HarP Equations</a>
+                </li>
+            </ul>
+                <ul>
+<li><a class="reference internal" href="#">HarP Algorithm</a><ul>
+<li><a class="reference internal" href="#harp-loop">HarP Loop</a></li>
+<li><a class="reference internal" href="#crank-nicolson-scheme">Crank-Nicolson Scheme</a><ul>
+<li><a class="reference internal" href="#matrix">Matrix</a></li>
+<li><a class="reference internal" href="#boundary-conditions">Boundary Conditions</a></li>
+<li><a class="reference internal" href="#source-term">Source term</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#kerr-effect">Kerr Effect</a></li>
+<li><a class="reference internal" href="#density-update">Density Update</a></li>
+</ul>
+</li>
+</ul>
+
+            <ul>
+                <li class="outer">
+                    <a href="vacuum_propagation.html">Far Field Propagation</a>
+                </li>
+                <li class="outer">
+                    <a href="limitation.html">Limitations</a>
+                </li>
+                <li class="outer">
+                    <a href="references.html">References</a>
+                </li>
+        </ul>
+        <hr />
+        <ul>
+                <li class="outer">
+                    <a href="../practice/namelist.html">Namelist</a>
+                </li>
+                <li class="outer">
+                    <a href="../practice/installation.html">First Simulation</a>
+                </li>
+                <li class="outer">
+                    <a href="../practice/post_process.html">Post-Process</a>
+                </li>
+        </ul>
+        <hr />
+    </div>
+
+</div>
+<div id="hcontainer">
+    <div id="nav_positioner">
+        <div id="nav">
+            <div id="nav_button" onclick="toggleNav()">
+                Sections
+            </div>
+            <div id="nav_list" class="toctree-smilei">
+                <div id="nav_title"><a href="#">HarP Algorithm</a></div>
+                <ul>
+<li><a class="reference internal" href="#">HarP Algorithm</a><ul>
+<li><a class="reference internal" href="#harp-loop">HarP Loop</a></li>
+<li><a class="reference internal" href="#crank-nicolson-scheme">Crank-Nicolson Scheme</a><ul>
+<li><a class="reference internal" href="#matrix">Matrix</a></li>
+<li><a class="reference internal" href="#boundary-conditions">Boundary Conditions</a></li>
+<li><a class="reference internal" href="#source-term">Source term</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#kerr-effect">Kerr Effect</a></li>
+<li><a class="reference internal" href="#density-update">Density Update</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="headercolor">
+    </div>
+    <div class="hpositioner">
+        <div class="header">
+        <div class="logo">
+            <a href="../index.html">
+                <img class="logo" src="../_static/HarPLogoWhite.svg" alt="Logo" />
+            </a>
+        </div>
+        <div class="menu"
+            id="menu_Theory"
+            style="font-weight:bold"
+        >
+            <div id="menuButton_Theory" class="menuButton"
+                 onmouseenter="prepareMenu('menu_Theory')"
+                 onmousedown="event.preventDefault()"
+            >
+                <a href="../theory.html">
+                    <span>Theory</span>
+                </a>
+            </div>
+            <div class="off" onmouseleave="leaveMenu('menu_Theory',this)">
+                <div class="toctree-smilei">
+                    <ul>
+                        <li class="outer">
+                            <a href="units.html">Units</a>
+                        </li>
+                        <li class="outer">
+                            <a href="harp_equations.html">HarP Equations</a>
+                        </li>
+                        <li >
+                            <a href="#">HarP Algorithm</a>
+                        </li>
+                        <li class="outer">
+                            <a href="vacuum_propagation.html">Far Field Propagation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="limitation.html">Limitations</a>
+                        </li>
+                        <li class="outer">
+                            <a href="references.html">References</a>
+                        </li>
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="last menu"
+            id="menu_Practice"
+            
+        >
+            <div id="menuButton_Practice" class="menuButton"
+                 onmouseenter="prepareMenu('menu_Practice')"
+                 onmousedown="event.preventDefault()"
+            >
+                <a href="../practice.html">
+                    <span>Practice</span>
+                </a>
+            </div>
+            <div class="off" onmouseleave="leaveMenu('menu_Practice',this)">
+                <div class="toctree-smilei">
+                    <ul>
+                        <li class="outer">
+                            <a href="../practice/namelist.html">Namelist</a>
+                        </li>
+                        <li class="outer">
+                            <a href="../practice/installation.html">First Simulation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="../practice/post_process.html">Post-Process</a>
+                        </li>
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+            var es=document.getElementsByClassName("menuButton"), i=0;
+            var evt = "ontouchend" in document ? "touchend" : "click";
+            for( var i=0; i<es.length; i+=1 ) {
+                es[i].addEventListener(evt, function(a){ return function(){toggleMenu(a)};}(es[i].parentNode.id));
+            }
+        </script>
+        
+        <div id="searchbox" role="search" style="display:none">
+            <form class="search" action="../search.html" method="get">
+              <input type="text" name="q" placeholder="Search" id="searchinput" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+        
+        <div id="searchicon" onclick="openSearch()" style="display:block">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 80 120">
+              <g transform="translate(0,-932.36216)" >
+                <circle
+                   r="25" cy="977.51044" cx="38.078663"
+                   style="opacity:1;fill:none;stroke:#ffffff;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                <rect
+                   transform="matrix(0.36717877,0.93015039,-0.93427297,0.35655858,0,0)"
+                   rx="4.9996676" ry="7.4995141"
+                   y="316.16959" x="947.6142"
+                   height="14.117695" width="46.476151"
+                   style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;" />
+                <path
+                   d="m 41.383282,962.25996 a 15,15 0 0 1 11.660107,11.6355"
+                   style="opacity:1;fill:none;stroke:#ffffff;stroke-width:3;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+              </g>
+            </svg>
+        </div>
+        <div id="closesearchicon" onclick="closeSearch()" style="display:none">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 80 120">
+              <g
+                 transform="translate(0,-932.36216)">
+                <path
+                   d="m 10,962.36216 60,60.00004"
+                   style="fill:none;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+                <path
+                   d="M 70,962.36216 10,1022.3622"
+                   style="fill:none;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+              </g>
+            </svg>
+        </div>
+        
+        <div id="smallScreenMenuButton" onclick="toggleSmallScreenMenu(event)">
+            <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"
+               viewBox="-20 -20 140 140">
+              <g  style="fill:#ffffff;stroke:none;">
+                <circle cx="15" cy="20" r="5" />
+                <circle cx="35" cy="20" r="5" />
+                <circle cx="85" cy="20" r="5" />
+                <rect width="50" height="10" x="35" y="15" rx="0" ry="0" />
+                <circle cx="15" cy="40" r="5" />
+                <circle cx="35" cy="40" r="5" />
+                <circle cx="85" cy="40" r="5" />
+                <rect width="50" height="10" x="35" y="35" rx="0" ry="0" />
+                <circle cx="15" cy="60" r="5" />
+                <circle cx="35" cy="60" r="5" />
+                <circle cx="85" cy="60" r="5" />
+                <rect width="50" height="10" x="35" y="55" rx="0" ry="0" />
+                <circle cx="15" cy="80" r="5" />
+                <circle cx="35" cy="80" r="5" />
+                <circle cx="85" cy="80" r="5" />
+                <rect width="50" height="10" x="35" y="75" rx="0" ry="0" />
+              </g>
+            </svg>
+        </div>
+        
+    </div>
+    
+</div>
+</div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="harp-algorithm">
+<h1>HarP Algorithm<a class="headerlink" href="#harp-algorithm" title="Link to this heading">¶</a></h1>
+<p>The <strong class="program">HarP</strong> algorithm was first introduced in <a class="reference internal" href="references.html#lhuillier1992" id="id1"><span>[LHuillier1992]</span></a> and was one of the earliest numerical approaches capable of reproducing the main trends of the harmonics generated in a gas.
+Since then, this method has been applied to different geometries to optimise and analyse experiments <a class="reference internal" href="references.html#antoine1996" id="id2"><span>[Antoine1996]</span></a>, <a class="reference internal" href="references.html#weissenbilder2022" id="id3"><span>[Weissenbilder2022]</span></a>, <a class="reference internal" href="references.html#westerberg2025" id="id4"><span>[Westerberg2025]</span></a>, <a class="reference internal" href="references.html#vardast2026" id="id5"><span>[Vardast2026]</span></a>.</p>
+<hr class="docutils" />
+<section id="harp-loop">
+<h2>HarP Loop<a class="headerlink" href="#harp-loop" title="Link to this heading">¶</a></h2>
+<p>As discussed during the <a class="reference internal" href="harp_equations.html"><span class="doc">derivation of the equations</span></a>, the problem is separated into two distinct time scales: the rapid oscillation of the optical field and the slowly varying pulse envelope.
+The oscillations are treated in the frequency domain, whereas the evolution of the slowly varying envelope is solved in the time domain.</p>
+<p>The space-time domain is uniformly discretised into <span class="math notranslate nohighlight">\(N_t \times N_r \times N_z\)</span> grid points with time and spatial steps <span class="math notranslate nohighlight">\(\Delta t\)</span>, <span class="math notranslate nohighlight">\(\Delta r\)</span>, and <span class="math notranslate nohighlight">\(\Delta z\)</span>, respectively.
+The loop consists of performing the following operations at each time step <span class="math notranslate nohighlight">\(t_n\)</span> :</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>The fundamental field is initialized at the boundary with the prescribed pulse envelope, <span class="math notranslate nohighlight">\(E_1(r, z=0, t_n)\)</span>.</p></li>
+<li><p>The propagation equations are solved for the fundamental <span class="math notranslate nohighlight">\(E_1(r, z, t_n)\)</span> and harmonic field envelopes <span class="math notranslate nohighlight">\(E_q(r, z, t_n)\)</span> over the <span class="math notranslate nohighlight">\((r, z)\)</span> domain.</p></li>
+<li><p>The atomic and electronic densities are updated following the population equations. The ionisation rate is evaluated from the fundamental field <span class="math notranslate nohighlight">\(E_1(r, z, t_n)\)</span>.</p></li>
+<li><p>The wave vectors and the propagation equations are modified considering the updated medium densities.</p></li>
+</ol>
+</div></blockquote>
+<figure class="align-default" id="id9">
+<span id="id6"></span><a class="reference internal image-reference" href="../_images/HarPloop.png"><img alt="../_images/HarPloop.png" src="../_images/HarPloop.png" style="width: 9cm;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Schematic representation of the HarP loop. At each time slice, the propagation equation is resolved using the Crank-Nicolson scheme. Densities are calculated from the driver field and used in the definition of the propagation equation at the next time step.</span><a class="headerlink" href="#id9" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>A schematisation is provided in <a class="reference internal" href="#id6"><span class="std std-numref">Fig. 1</span></a> and can be understood as follows: as the driving field propagates through the gas, it ionises the medium, thereby altering its own propagation.
+For each time slice resolving the evolution of the field envelope, the spatial propagation is computed over the entire domain.
+The resulting field distribution is then used to update the densities, which dictate the propagation parameters for the subsequent time iteration.</p>
+<p>To efficiently deal with the three-dimensional variables, the harmonic field envelopes are stored in a vector of dimension <span class="math notranslate nohighlight">\(q \times N_r\)</span>, containing the radial distribution of each harmonic at a specific longitudinal and time position.
+Additional diagnostics are implemented to save the quantities at user-defined positions.
+Similarly, the atomic and electronic densities are stored as arrays of size <span class="math notranslate nohighlight">\(N_r\)</span> and saved at user-selected time/longitudinal steps.</p>
+</section>
+<hr class="docutils" />
+<section id="crank-nicolson-scheme">
+<h2>Crank-Nicolson Scheme<a class="headerlink" href="#crank-nicolson-scheme" title="Link to this heading">¶</a></h2>
+<p>The propagation equation of the qth harmonic, which is given by:</p>
+<div class="math notranslate nohighlight">
+\[\partial_r^2 E_q + \frac{1}{r}\partial_r E_q+ 2ik_{q,0}(z)\partial_z E_q +2k_{q,0} [\delta k_q(r,z)+ \Delta k_{q,0}(z)]E_q= -4 q^2 \rho_a(r,z)d_q(r,z)e^{\mathbf{i}q\phi_1(r,z)}\]</div>
+<p>is solved at each time step, using a Crank-Nicolson scheme. This scheme is expressed through the following matrix relation:</p>
+<div class="math notranslate nohighlight">
+\[M^{n+1}(\alpha)E^{n+1} = M^{n}(-\alpha)E^{n} + S^{n},\]</div>
+<p>where the vector <span class="math notranslate nohighlight">\(E^{n}=(E_0^n,E_1^n,...,E_{N_r-1}^n)\)</span> stores the value of the electric field envelope of all radial positions <span class="math notranslate nohighlight">\(r_j\)</span> at <span class="math notranslate nohighlight">\(z=z_n\)</span>.</p>
+<p>Although the harmonic-order dependency (<span class="math notranslate nohighlight">\(q\)</span>) is omitted in the above notation for clarity, the matrix equation is solved independently for every individual harmonic and the fundamental driver field.
+Each possesses its own spatially discretized envelope vector <span class="math notranslate nohighlight">\(E_q\)</span> and wavevector <span class="math notranslate nohighlight">\(k_q\)</span>.</p>
+<section id="matrix">
+<h3>Matrix<a class="headerlink" href="#matrix" title="Link to this heading">¶</a></h3>
+<p>The tridiagonal matrix <span class="math notranslate nohighlight">\(M^n\)</span> composed of coefficients <span class="math notranslate nohighlight">\(m_{i,j}^n(\alpha)\)</span> (with <span class="math notranslate nohighlight">\(\alpha=\mathbf{i}\Delta z/(4 \Delta r ^2)\)</span>) related to the wavevector
+denoted <span class="math notranslate nohighlight">\(k^{0,n}=k_{q,0}(z_n)\)</span>, <span class="math notranslate nohighlight">\(\Delta k^{0,n}=\Delta k_{q,0}(z_n)\)</span> (independent of the transverse coordinate by definition)
+and <span class="math notranslate nohighlight">\(\delta k^{n}_j = \delta k_q(r_j,z_n)\)</span>.</p>
+<p>For internal nodes (<span class="math notranslate nohighlight">\(0 &lt; i,j &lt; N_r-1\)</span>), the non-zero elements are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}m_{i,j}^n(\alpha) =
+\begin{cases} -\dfrac{\alpha}{k^{0,n}} \left[1- \dfrac{\Delta r}{2 r_j}\right]    &amp;, j = i-1 \text{ (lower diagonal)}\\
+1 + 2\dfrac{\alpha}{k^{0,n}} - 2\alpha \left[\delta k_j^{n} + \Delta k^{0,n} \right]\Delta r^2 &amp;,  j = i \phantom{-1}\,\,\, \text{ (main diagonal)}\\
+-\dfrac{\alpha}{k^{0,n}} \left[1+ \dfrac{\Delta r}{2 r_j}\right] &amp;,  j = i+1 \text{ (upper diagonal)} \\
+0 &amp;. \text{otherwise}
+\end{cases}\end{split}\]</div>
+</section>
+<section id="boundary-conditions">
+<h3>Boundary Conditions<a class="headerlink" href="#boundary-conditions" title="Link to this heading">¶</a></h3>
+<p>At <span class="math notranslate nohighlight">\(r=0\)</span> we apply Neumann Boundary Conditions <span class="math notranslate nohighlight">\(\partial_r E_q =0\)</span> and take the symmetry <span class="math notranslate nohighlight">\(E_q(r,z)=E_q(-r,z)\)</span> into account.
+The matrix elements at <span class="math notranslate nohighlight">\(i=0\)</span> become:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}m^n_{0,j}(\alpha) =
+\begin{cases} 1 + \frac{4\alpha}{k^{0,n}} - 2\alpha \left[\delta k_j^{n} + \Delta k^{0,n} \right]\Delta r^2   &amp;, j = 0 \,\, \text{ (main diagonal)}\\
+-\frac{4\alpha}{k^{0,n}}  &amp;,  j = 1 \,\, \text{ (upper diagonal)}\\
+0 &amp;, \text{otherwise.}
+\end{cases}\end{split}\]</div>
+<p>At the farthest radial point, two conditions are available. The default being the Sommerfeld radiation condition <span class="math notranslate nohighlight">\(\partial_r E_q(r_{max},z) = ik_q E_q(r_{max},z)\)</span> that allows the absorption of the outgoing wave.
+The matrix elements at <span class="math notranslate nohighlight">\(i=N_r-1\)</span> read:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}m^n_{N_r-1,j}(\alpha) =
+\begin{cases}
+1+\alpha \left[k^{0,n}-\frac{\mathbf{i}}{r_j}-2(\delta k^{n}_j + \Delta k^{0,n} )\right]\Delta r^2 &amp;,  j = N_r-1 \,\, \text{ (main diagonal)}\\
+0 &amp;, \text{otherwise.}
+\end{cases}\end{split}\]</div>
+<p>A second possibility is to apply the Dirichlet Boundary condition <span class="math notranslate nohighlight">\(E_q(r_{max},z)=0\)</span>. This condition can be understood as wave reflection at the boundary of the target.
+In that case, the matrix element at <span class="math notranslate nohighlight">\(i=N_r-1\)</span> simply reads:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}m^n_{N_r-1,j}(\alpha) =
+\begin{cases}
+1 &amp;,  j = N_r-1 \,\, \text{ (main diagonal)}\\
+0 &amp;, \text{otherwise.}
+\end{cases}\end{split}\]</div>
+</section>
+<section id="source-term">
+<h3>Source term<a class="headerlink" href="#source-term" title="Link to this heading">¶</a></h3>
+<p>The vector <span class="math notranslate nohighlight">\(S^n=(S^n_0,S^n_1,...,S_{N_r-1}^n)\)</span> is the source term directly responsible for the harmonic generation. It accounts for the nonlinear polarization <span class="math notranslate nohighlight">\(P_q(r_j,z_n)=P_j^n\)</span> vector:</p>
+<div class="math notranslate nohighlight">
+\[P_j^n = 2 \rho_{a,j}^{n} d_j^n e^{\mathbf{i} q\phi_{1,j}^n},\]</div>
+<p>where <span class="math notranslate nohighlight">\(\rho_{a,j}^n=\rho_a(r_j,z_n)\)</span>, <span class="math notranslate nohighlight">\(d_j^n=d_q(E_1(r_j,z_n))\)</span> and <span class="math notranslate nohighlight">\(\phi_{1,j}^n=\arg(E_1(r_j,z_n))\)</span>.
+Each of the <span class="math notranslate nohighlight">\(S^n\)</span> components is defined by:</p>
+<div class="math notranslate nohighlight">
+\[S^{n}_j = q^2 \frac{\mathbf{i}\Delta z}{4}\left[\frac{P_j^{n+1}}{k^{n+1}_0}+\frac{P_j^n}{k^n_0}\right].\]</div>
+<p>The matrix equation is solved at each time and longitudinal step using the <em>solve_banded</em> method from <em>scipy</em> <a class="reference internal" href="references.html#solvebanded" id="id7"><span>[SolveBanded]</span></a>.</p>
+<p>The electric field envelope of the driving laser is initialized at the entrance plane (<span class="math notranslate nohighlight">\(z=0\)</span>) by an arbitrary user-defined function for <span class="math notranslate nohighlight">\(E_1(r,z=0,t)\)</span>.
+At each time slice, the envelope at the subsequent longitudinal step <span class="math notranslate nohighlight">\(z=z_{n+1}\)</span> is computed from the field at <span class="math notranslate nohighlight">\(z=z_n\)</span> by solving the matrix equation.
+This is achieved using the <em>solve_banded</em> routine from the <em>SciPy library</em> <a class="reference internal" href="references.html#solvebanded" id="id8"><span>[SolveBanded]</span></a>.
+This longitudinal propagation step is iterated to obtain the field <span class="math notranslate nohighlight">\(E_q\)</span> across the entire spatial domain for each time slice.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="kerr-effect">
+<h2>Kerr Effect<a class="headerlink" href="#kerr-effect" title="Link to this heading">¶</a></h2>
+<p>For the fundamental field, the Kerr effect introduces a dependency on the electric field inside the perturbation <span class="math notranslate nohighlight">\(\delta k \propto \lvert E \rvert^2\)</span>. To take into account this behaviour, two possibilities are implemented.
+The simplest way consists of using the Crank-Nicolson scheme with the wavevector <span class="math notranslate nohighlight">\(\delta k^{n+1}\)</span> evaluated from the previous longitudinal electric field <span class="math notranslate nohighlight">\(E^{n}\)</span>.
+The second way consists of using the Predictor Corrector method. A first resolution of the matrix equation is made by computing the perturbation <span class="math notranslate nohighlight">\(\delta k^{n+1}\)</span> from <span class="math notranslate nohighlight">\(E^{n}\)</span>.
+A second resolution is made but evaluating the perturbation at <span class="math notranslate nohighlight">\((E^{n+1}+E^{n})/2\)</span>. Although more expensive (doubles the computational time for the fundamental resolution), this last method ensures a higher numerical precision.</p>
+</section>
+<hr class="docutils" />
+<section id="density-update">
+<h2>Density Update<a class="headerlink" href="#density-update" title="Link to this heading">¶</a></h2>
+<p>At the end of each time step, the ionisation rate is evaluated from the fundamental field <span class="math notranslate nohighlight">\(E_1(r,z,t_n)\)</span>. The integral:</p>
+<div class="math notranslate nohighlight">
+\[Y(r,z,t_n) = \int_0^{t_n} dt w(E_1(r,z,t)) \sim \sum_{i=0}^{n} \Delta t w(E_1(r,z,t_i))\]</div>
+<p>is updated using a Riemann sum. The value of <span class="math notranslate nohighlight">\(Y(r,z,t_n)\)</span> (matrix of size <span class="math notranslate nohighlight">\(N_r\times N_z\)</span>) is injected in the atomic and electronic density definition Eqs. <a class="reference internal" href="harp_equations.html#equation-eqdensity">(4)</a>.
+These new densities are used for the calculation of the propagation equations at the next time iteration.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      <div>
+      <a href="https://github.com/HarmonicPropagation/HarP">Github</a>
+      </div>
+      <div>
+        <a href="../citation.html">
+            Cite this work
+        </a>
+      </div>
+      
+      <div>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 9.1.0</a>
+      </div>
+      
+      <div class="footer">
+        Theme by 
+        <a href="https://github.com/SmileiPIC/Smilei">
+            Smilei 5.1
+        </a>
+      </div>
+    </div>
+    
+    <script type="text/javascript">
+        
+        var nav = document.getElementById("nav");
+        var nav_list = document.getElementById("nav_list");
+        var nav_button = document.getElementById("nav_button");
+        var smallScreenMenu = document.getElementById("smallScreenMenu");
+        var smallScreenMenuButton = document.getElementById("smallScreenMenuButton");
+        var searchicon = document.getElementById("searchicon");
+        var searchbox  = document.getElementById("searchbox");
+        var searchinput= document.getElementById("searchinput");
+        var menus = document.getElementsByClassName("menu");
+        for( var i=0; i<menus.length; i++ )
+            menus[i].active = false;
+        
+        
+        var ul = nav_list.getElementsByTagName("ul")[0], li;
+        var keep_nav = false;
+        if( ul ) {
+            li = ul.firstElementChild;
+            if( li ) {
+                if( li.getElementsByTagName("ul").length > 0 ) keep_nav = true;
+            }
+        }
+        if( keep_nav ) {
+            li.removeChild( li.firstElementChild );
+        } else {
+            document.getElementById("nav_positioner").removeChild( document.getElementById("nav") );
+        }
+        
+        function navOff() {
+            nav_list.style.display = "none";
+            nav_button.className = "";
+            nav.style.overflowY = "visible";
+        }
+        
+        function toggleNav() {
+            for( var i=0; i<menus.length; i++ )
+                menuOff( menus[i] );
+            if( nav_list.style.display != "inline-block" ) {
+                nav_list.style.display = "inline-block";
+                nav_button.className = "pushed";
+                nav.style.overflowY = "auto";
+            } else {
+                navOff();
+            }
+        }
+        
+        function toggleSmallScreenMenu(e) {
+            e.preventDefault();
+            if( smallScreenMenu.className != "on" ) {
+                smallScreenMenu.className = "on";
+                smallScreenMenuButton.className = "pushed";
+                document.documentElement.style.overflow = "hidden";
+            } else {
+                smallScreenMenu.className = "off";
+                smallScreenMenuButton.className = "";
+                document.documentElement.style.overflow = "";
+            }
+        }
+        
+        function prepareMenu(menu_id) {
+            var menu = document.getElementById(menu_id);
+            menu.timer1 = setTimeout(function(a){ return function(){thisMenuOnly(a)};}(menu_id), 100);
+            menu.addEventListener("mouseleave", function(a){ return function(){clearTimeout(a.timer1)};}(menu) );
+        }
+        
+        function leaveMenu(menu_id, source) {
+            var menu = document.getElementById(menu_id);
+            menu.timer2 = setTimeout(function(a){ return function(){menuOff(a)};}(menu), 1000);
+            source.addEventListener("mouseenter", function(a){ return function(){clearTimeout(a.timer2)};}(menu) );
+        }
+        
+        function menuOn( menu ) {
+            var divs = menu.getElementsByTagName("div");
+            if(nav_list) navOff();
+            divs[1].className = "on";
+            divs[0].className = "menuButton pushed";
+            menu.active = true;
+        }
+        function menuOff( menu ) {
+            var divs = menu.getElementsByTagName("div");
+            divs[1].className = "off";
+            divs[0].className = "menuButton";
+            menu.active = false;
+        }
+        
+        function thisMenuOnly(menu_id) {
+            var menu = document.getElementById(menu_id);
+            for( var i=0; i<menus.length; i++ )
+                if( i!=menu_id )
+                    menuOff( menus[i] );
+            menuOn( menu );
+        }
+        
+        function toggleMenu(menu_id) {
+            var menu = document.getElementById(menu_id);
+            if( menu.active ) {
+                menuOff( menu );
+            } else {
+                for( var i=0; i<menus.length; i++ )
+                    if( i!=menu_id )
+                        menuOff( menus[i] );
+                menuOn( menu );
+            }
+        }
+        
+        function openSearch() {
+            for( var i=0; i<menus.length; i++ ) {
+                menuOff( menus[i] );
+                menus[i].style.zIndex = "-1";
+            }
+            searchicon.style.display = "none";
+            closesearchicon.style.display = "block";
+            searchbox.style.display = "block";
+            searchinput.focus();
+        }
+        
+        function closeSearch() {
+            searchicon.style.display = "block";
+            closesearchicon.style.display = "none";
+            searchbox .style.display = "none";
+            for( var i=0; i<menus.length; i++ )
+                menus[i].style.zIndex = "0";
+        }
+        
+        
+        var documentDiv = document.getElementsByClassName("document")[0];
+        documentDiv.addEventListener('click', function (event) {
+            if(nav_list) navOff();
+            for( var i=0; i<menus.length; i++ )
+                menuOff( menus[i] );
+        });
+    </script>
+  </body>
+</html>

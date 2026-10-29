@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>HarP Equations &#8212; HarP 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/smilei_theme.css?v=526adb52" />
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="HarP Algorithm" href="harp_algorithm.html" />
+    <link rel="prev" title="Units" href="units.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      scale: 95,
+      availableFonts: ["TeX"]
+    }
+  });
+  </script>
+   
+  </head><body>
+
+<div id="smallScreenMenu" class="off">
+
+    
+    <div class="toctree-smilei">
+        <ul>
+                <li class="outer">
+                    <a href="units.html">Units</a>
+                </li>
+            </ul>
+                <ul>
+<li><a class="reference internal" href="#">HarP Equations</a><ul>
+<li><a class="reference internal" href="#wave-equation">Wave Equation</a></li>
+<li><a class="reference internal" href="#wavevector">Wavevector</a></li>
+<li><a class="reference internal" href="#envelope-equation">Envelope Equation</a></li>
+<li><a class="reference internal" href="#dipole-moment">Dipole Moment</a></li>
+<li><a class="reference internal" href="#density">Density</a></li>
+</ul>
+</li>
+</ul>
+
+            <ul>
+                <li class="outer">
+                    <a href="harp_algorithm.html">HarP Algorithm</a>
+                </li>
+                <li class="outer">
+                    <a href="vacuum_propagation.html">Far Field Propagation</a>
+                </li>
+                <li class="outer">
+                    <a href="limitation.html">Limitations</a>
+                </li>
+                <li class="outer">
+                    <a href="references.html">References</a>
+                </li>
+        </ul>
+        <hr />
+        <ul>
+                <li class="outer">
+                    <a href="../practice/namelist.html">Namelist</a>
+                </li>
+                <li class="outer">
+                    <a href="../practice/installation.html">First Simulation</a>
+                </li>
+                <li class="outer">
+                    <a href="../practice/post_process.html">Post-Process</a>
+                </li>
+        </ul>
+        <hr />
+    </div>
+
+</div>
+<div id="hcontainer">
+    <div id="nav_positioner">
+        <div id="nav">
+            <div id="nav_button" onclick="toggleNav()">
+                Sections
+            </div>
+            <div id="nav_list" class="toctree-smilei">
+                <div id="nav_title"><a href="#">HarP Equations</a></div>
+                <ul>
+<li><a class="reference internal" href="#">HarP Equations</a><ul>
+<li><a class="reference internal" href="#wave-equation">Wave Equation</a></li>
+<li><a class="reference internal" href="#wavevector">Wavevector</a></li>
+<li><a class="reference internal" href="#envelope-equation">Envelope Equation</a></li>
+<li><a class="reference internal" href="#dipole-moment">Dipole Moment</a></li>
+<li><a class="reference internal" href="#density">Density</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="headercolor">
+    </div>
+    <div class="hpositioner">
+        <div class="header">
+        <div class="logo">
+            <a href="../index.html">
+                <img class="logo" src="../_static/HarPLogoWhite.svg" alt="Logo" />
+            </a>
+        </div>
+        <div class="menu"
+            id="menu_Theory"
+            style="font-weight:bold"
+        >
+            <div id="menuButton_Theory" class="menuButton"
+                 onmouseenter="prepareMenu('menu_Theory')"
+                 onmousedown="event.preventDefault()"
+            >
+                <a href="../theory.html">
+                    <span>Theory</span>
+                </a>
+            </div>
+            <div class="off" onmouseleave="leaveMenu('menu_Theory',this)">
+                <div class="toctree-smilei">
+                    <ul>
+                        <li class="outer">
+                            <a href="units.html">Units</a>
+                        </li>
+                        <li >
+                            <a href="#">HarP Equations</a>
+                        </li>
+                        <li class="outer">
+                            <a href="harp_algorithm.html">HarP Algorithm</a>
+                        </li>
+                        <li class="outer">
+                            <a href="vacuum_propagation.html">Far Field Propagation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="limitation.html">Limitations</a>
+                        </li>
+                        <li class="outer">
+                            <a href="references.html">References</a>
+                        </li>
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="last menu"
+            id="menu_Practice"
+            
+        >
+            <div id="menuButton_Practice" class="menuButton"
+                 onmouseenter="prepareMenu('menu_Practice')"
+                 onmousedown="event.preventDefault()"
+            >
+                <a href="../practice.html">
+                    <span>Practice</span>
+                </a>
+            </div>
+            <div class="off" onmouseleave="leaveMenu('menu_Practice',this)">
+                <div class="toctree-smilei">
+                    <ul>
+                        <li class="outer">
+                            <a href="../practice/namelist.html">Namelist</a>
+                        </li>
+                        <li class="outer">
+                            <a href="../practice/installation.html">First Simulation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="../practice/post_process.html">Post-Process</a>
+                        </li>
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+            var es=document.getElementsByClassName("menuButton"), i=0;
+            var evt = "ontouchend" in document ? "touchend" : "click";
+            for( var i=0; i<es.length; i+=1 ) {
+                es[i].addEventListener(evt, function(a){ return function(){toggleMenu(a)};}(es[i].parentNode.id));
+            }
+        </script>
+        
+        <div id="searchbox" role="search" style="display:none">
+            <form class="search" action="../search.html" method="get">
+              <input type="text" name="q" placeholder="Search" id="searchinput" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+        
+        <div id="searchicon" onclick="openSearch()" style="display:block">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 80 120">
+              <g transform="translate(0,-932.36216)" >
+                <circle
+                   r="25" cy="977.51044" cx="38.078663"
+                   style="opacity:1;fill:none;stroke:#ffffff;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                <rect
+                   transform="matrix(0.36717877,0.93015039,-0.93427297,0.35655858,0,0)"
+                   rx="4.9996676" ry="7.4995141"
+                   y="316.16959" x="947.6142"
+                   height="14.117695" width="46.476151"
+                   style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;" />
+                <path
+                   d="m 41.383282,962.25996 a 15,15 0 0 1 11.660107,11.6355"
+                   style="opacity:1;fill:none;stroke:#ffffff;stroke-width:3;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+              </g>
+            </svg>
+        </div>
+        <div id="closesearchicon" onclick="closeSearch()" style="display:none">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 80 120">
+              <g
+                 transform="translate(0,-932.36216)">
+                <path
+                   d="m 10,962.36216 60,60.00004"
+                   style="fill:none;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+                <path
+                   d="M 70,962.36216 10,1022.3622"
+                   style="fill:none;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+              </g>
+            </svg>
+        </div>
+        
+        <div id="smallScreenMenuButton" onclick="toggleSmallScreenMenu(event)">
+            <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"
+               viewBox="-20 -20 140 140">
+              <g  style="fill:#ffffff;stroke:none;">
+                <circle cx="15" cy="20" r="5" />
+                <circle cx="35" cy="20" r="5" />
+                <circle cx="85" cy="20" r="5" />
+                <rect width="50" height="10" x="35" y="15" rx="0" ry="0" />
+                <circle cx="15" cy="40" r="5" />
+                <circle cx="35" cy="40" r="5" />
+                <circle cx="85" cy="40" r="5" />
+                <rect width="50" height="10" x="35" y="35" rx="0" ry="0" />
+                <circle cx="15" cy="60" r="5" />
+                <circle cx="35" cy="60" r="5" />
+                <circle cx="85" cy="60" r="5" />
+                <rect width="50" height="10" x="35" y="55" rx="0" ry="0" />
+                <circle cx="15" cy="80" r="5" />
+                <circle cx="35" cy="80" r="5" />
+                <circle cx="85" cy="80" r="5" />
+                <rect width="50" height="10" x="35" y="75" rx="0" ry="0" />
+              </g>
+            </svg>
+        </div>
+        
+    </div>
+    
+</div>
+</div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="harp-equations">
+<h1>HarP Equations<a class="headerlink" href="#harp-equations" title="Link to this heading">¶</a></h1>
+<p>Several models have been developed in order to solve the macroscopic propagation of the harmonics.
+One of the earliest theoretical models capable of reproducing the main trends of harmonic generation and their propagation was introduced in <a class="reference internal" href="references.html#lhuillier1992" id="id1"><span>[LHuillier1992]</span></a>.</p>
+<p>The <strong class="program">HarP</strong> code aims to solve the equations introduced in this pioneering work that are re-derived in the current section.</p>
+<p>In the following, we consider a <strong>cylindrically symmetric</strong> geometry using radial and longitudinal coordinates <span class="math notranslate nohighlight">\((r,z)\)</span>.
+We defined the real electric field and nonlinear polarisation through their <span class="math notranslate nohighlight">\(q\)</span> th Fourier components <span class="math notranslate nohighlight">\(\mathcal{E}_q\)</span> and <span class="math notranslate nohighlight">\(\mathcal{P}_q\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathcal{E}(r,z,t)&amp;= \frac{1}{2} \sum_q \mathcal{E}_q(r,z)e^{-\mathbf{i}q \omega t} +c.c. \\
+\mathcal{P}(r,z,t)&amp;= \frac{1}{2} \sum_q \mathcal{P}_q(z,t)e^{-\mathbf{i}q \omega t} +c.c.\end{split}\]</div>
+<hr class="docutils" />
+<section id="wave-equation">
+<h2>Wave Equation<a class="headerlink" href="#wave-equation" title="Link to this heading">¶</a></h2>
+<p>The derivation begins from the wave equation in Fourier space for the electric field of the harmonic of order <span class="math notranslate nohighlight">\(q\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\nabla^2 \mathcal{E}_q + k_q^2 \mathcal{E}_q=-\frac{1}{\epsilon_0} \left(\frac{q\omega}{c}\right)^2 \mathcal{P}_q\]</div>
+<p>The <strong>polarisation</strong> is assumed to be <strong>induced solely by the fundamental field</strong> (<span class="math notranslate nohighlight">\(q=1\)</span>).
+The wave vector of the <span class="math notranslate nohighlight">\(q\)</span> th harmonic is defined as <span class="math notranslate nohighlight">\(k_q=nq\omega/c\)</span> where <span class="math notranslate nohighlight">\(n\)</span> is the refractive index of the medium evaluated at energy <span class="math notranslate nohighlight">\(q \hbar \omega\)</span> and position <span class="math notranslate nohighlight">\((r,z)\)</span>.
+<strong>Neglecting the ionic susceptibility</strong>, the index of refraction is determined by the atomic and electronic, denoted <span class="math notranslate nohighlight">\(\chi_a\)</span> and <span class="math notranslate nohighlight">\(\chi_e\)</span>, respectively:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}n(q\omega,r,z) &amp;= \sqrt{1+\chi_a(q\omega,r,z)+\chi_e(q\omega,r,z)}, \\
+\chi_a(q \omega,r,z) &amp;= -\rho_a(r,z)\frac{ e^2}{\epsilon_0 m_e q^2 \omega^2}\left[f_1(q\omega) -\mathbf{i} f_2(q\omega)\right], \\
+\chi_e(q \omega,r,z) &amp;= -\rho_e(r,z)\frac{ e^2}{\epsilon_0 m_e q^2 \omega^2},\end{split}\]</div>
+<p>Here <span class="math notranslate nohighlight">\(f_1\)</span>, <span class="math notranslate nohighlight">\(f_2\)</span>, represent the atomic form factors. The atomic form factor <span class="math notranslate nohighlight">\(f_2\)</span> is responsible for the absorption and should be understood as a positive quantity in agreement with <a class="reference internal" href="references.html#henke1993" id="id2"><span>[Henke1993]</span></a> table.
+Here, <span class="math notranslate nohighlight">\(\rho_a\)</span> and <span class="math notranslate nohighlight">\(\rho_e\)</span> correspond to the atomic and electronic densities.</p>
+</section>
+<hr class="docutils" />
+<section id="wavevector">
+<h2>Wavevector<a class="headerlink" href="#wavevector" title="Link to this heading">¶</a></h2>
+<p>The wavevector is now expressed using a perturbative expansion: <span class="math notranslate nohighlight">\(k_q(r,z)=k_{q,0}(z)+\delta k_q(r,z)\)</span>.
+The zeroth-order term <span class="math notranslate nohighlight">\(k_{q,0}\)</span> is assumed to be independent of the transverse coordinate,
+while the first-order perturbation <span class="math notranslate nohighlight">\(\delta k_q\)</span> satisfies <span class="math notranslate nohighlight">\(k_{q,0}(z) \gg \delta k_q(r,z)\)</span> everywhere in space.
+We assume a <strong>low-density target</strong> such that <span class="math notranslate nohighlight">\(\chi_{a}, \chi_{e} \ll 1\)</span> and consider only the first ionisation relevant to the interaction such that the ionic density equals the electronic density. Thus, the initial target density is <span class="math notranslate nohighlight">\(\rho_g(z)=\rho_e(r,z)+\rho_a(r,z)\)</span> (assumed radially uniform at this stage). We have <span class="math notranslate nohighlight">\(\forall q&gt;1\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eqwavevectors">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eqwavevectors" title="Link to this equation">¶</a></span>\[\begin{split}\begin{gathered}
+    \frac{c}{q\omega}\,k_{q,0}(z)= 1-\rho_g(z)\frac{e^2}{2\epsilon_0m_eq^2\omega^2}[f_1(q \omega)-\mathbf{i}f_2(q\omega)] \\
+    \frac{c}{q\omega} \delta k_{q}(r,z)= -\rho_e(r,z)\frac{e^2}{2\epsilon_0m_eq^2\omega^2}\left[1-f_1(q\omega)+\mathbf{i}f_2(q\omega)\right].
+\end{gathered}\end{split}\]</div>
+<p>This decomposition follows the approach introduced in Refs. <a class="reference internal" href="references.html#lhuillier1992" id="id3"><span>[LHuillier1992]</span></a>, <a class="reference internal" href="references.html#antoine1996" id="id4"><span>[Antoine1996]</span></a>.
+As discussed in Ref. <a class="reference internal" href="references.html#antoine1996" id="id5"><span>[Antoine1996]</span></a>, an alternative formulation can be adopted by setting <span class="math notranslate nohighlight">\(k_{q,0}=q\omega/c\)</span>
+and including the spatial dependencies into the perturbation term: <span class="math notranslate nohighlight">\(\delta k_q(r,z)=\chi_a(q\omega,r,z)/2+\chi_e(q\omega,r,z)/2\)</span>.
+This latter approach is implemented for initial target profiles exhibiting transverse variations (see <a class="reference internal" href="../practice/namelist.html"><span class="doc">namelist</span></a>).
+For radially uniform initial target profiles, the system defined in Eqs. <a class="reference internal" href="#equation-eqwavevectors">(1)</a> provides higher accuracy.</p>
+<p>The wavevector of the fundamental field is defined directly through the polarisability <span class="math notranslate nohighlight">\(\alpha_0\)</span> rather than the form factors.
+Furthermore, at high laser intensities (of the order of or exceeding <span class="math notranslate nohighlight">\(10^{14}\)</span> W/cm<sup>2</sup>), the Kerr effect <a class="reference internal" href="references.html#kerr1875" id="id6"><span>[Kerr1875]</span></a> must be accounted for in the pulse propagation.
+Adding the Kerr nonlinearity to the refractive index <a class="reference internal" href="references.html#boyd2008" id="id7"><span>[Boyd2008]</span></a> for <span class="math notranslate nohighlight">\(q=1\)</span>, yields the wavevector components <span class="math notranslate nohighlight">\(k_{1,0}(z), \delta k_1(r,z)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+    \frac{c}{\omega} \,k_{1,0}(z)= 1+\rho_g(z)\frac{\alpha_0}{2\epsilon_0}, \\
+    \frac{c}{\omega} \delta k_{1}(r,z)= -\frac{\rho_e(r,z)}{2}\left(\frac{\alpha_0}{\epsilon_0}+\frac{e^2}{\epsilon_0m_eq^2\omega^2}\right)+\rho_a(r,z)\frac{3\gamma }{8\epsilon_0}E_1^2(r,z).
+\end{gathered}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\gamma\)</span> represents the second hyperpolarisability. The definition of the second hyperpolarisability may differ by a factor of 6 across different communities.
+In <strong class="program">HarP</strong>, the definition of <span class="math notranslate nohighlight">\(\gamma\)</span> is 6 times smaller than the value reported in Ref. <a class="reference internal" href="references.html#soldan2001" id="id8"><span>[Soldán2001]</span></a>.</p>
+</section>
+<hr class="docutils" />
+<section id="envelope-equation">
+<h2>Envelope Equation<a class="headerlink" href="#envelope-equation" title="Link to this heading">¶</a></h2>
+<p>We define the modified envelope function of the electric field <span class="math notranslate nohighlight">\(\hat{E}_q\)</span> and of the polarisability <span class="math notranslate nohighlight">\(P_q\)</span> through the following relations:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathcal{E}_q&amp;=\hat{E}_q e^{i\int^zk_{q,0}(z') dz'}, \\
+\mathcal{P}_q&amp;= P_q e^{i\int^z qk_{1,0}(z') dz'}.\end{split}\]</div>
+<p>Applying the <strong>paraxial approximation</strong> <span class="math notranslate nohighlight">\(\partial_z^2 \hat{E}_q \ll k_{q,0}\partial_z \hat{E}_q\)</span> and neglecting the term in <span class="math notranslate nohighlight">\(\hat{E}_q \partial_z k_{q,0}\)</span>,
+the wave equation simplifies to an equation of the envelope field:</p>
+<div class="math notranslate nohighlight">
+\[\nabla_\perp^2 \hat{E}_q + 2ik_{q,0}(z)\partial_z \hat{E}_q +2k_{q,0} \delta k_q(r,z) \hat{E}_q=-\frac{1}{\epsilon_0} \left(\frac{q\omega}{c}\right)^2 P_q e^{-i\int^z \Delta k_{q,0}(z')dz'},\]</div>
+<p>where <span class="math notranslate nohighlight">\(\nabla_\perp^2 = \partial_r^2  + 1/r \partial_r\)</span> and <span class="math notranslate nohighlight">\(\Delta k_{q,0}(z)=k_{q,0}(z)-qk_{1,0}(z)\)</span>. Introducing the change of variable:</p>
+<div class="math notranslate nohighlight">
+\[\hat{E}_q=E_q e^{-i\int^z \Delta k_{q,0}(z')dz},\]</div>
+<p>we obtain the governing equation:</p>
+<div class="math notranslate nohighlight" id="equation-eqenvelopeq">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eqenvelopeq" title="Link to this equation">¶</a></span>\[\nabla_\perp^2 E_q + 2ik_{q,0}(z)\partial_z E_q +2k_{q,0} [\delta k_q(r,z)+ \Delta k_{q,0}(z)]E_q=-\frac{1}{\epsilon_0} \left(\frac{q\omega}{c}\right)^2 P_q.\]</div>
+<p>Since <span class="math notranslate nohighlight">\(k_{1,0}\)</span> is purely real for optical lasers, the energy calculated from <span class="math notranslate nohighlight">\(E_q\)</span> is identical to that calculated from the full electric field <span class="math notranslate nohighlight">\(\mathcal{E}_q\)</span>.</p>
+<p>It is essential to distinguish between the optical period of the laser oscillations and its temporal envelope.
+Under the slowly varying envelope approximation (SVEA), these two time-scales can be treated independently.
+The rapid oscillations are treated in the frequency domain by decomposing the field into its harmonic components, while the corresponding field envelopes remain functions of time.
+Consequently, although the propagation equations are formulated in the frequency domain for each harmonic, they are solved at successive times discretising the slowly varying envelopes.
+The same separation of time scales applies to other slowly varying quantities, such as plasma density and wave vectors.</p>
+</section>
+<hr class="docutils" />
+<section id="dipole-moment">
+<h2>Dipole Moment<a class="headerlink" href="#dipole-moment" title="Link to this heading">¶</a></h2>
+<p>The non-linear polarisation term <span class="math notranslate nohighlight">\(P_q\)</span> is defined through the atomic dipole moment <span class="math notranslate nohighlight">\(d_q(r,z)\)</span> and the phase of the fundamental field <span class="math notranslate nohighlight">\(\phi_1(r,z)\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eqpq">
+<span class="eqno">(3)<a class="headerlink" href="#equation-eqpq" title="Link to this equation">¶</a></span>\[P_q(r,z) = 2\rho_a(r,z)d_q(r,z)e^{\mathbf{i}q\phi_1(r,z)}.\]</div>
+<p>This term, directly responsible for high-harmonic generation, contains the microscopic response of the atom interacting with the intense incident laser field.
+It can be modelled using several theoretical frameworks. Numerous codes have already been developed for calculating the non-linear polarisability within the Strong Field Approximation (SFA) <a class="reference internal" href="references.html#lewenstein1994" id="id9"><span>[Lewenstein1994]</span></a>.
+A non-exhaustive list of such approaches includes <a class="reference internal" href="references.html#priori2000" id="id10"><span>[Priori2000]</span></a>, <a class="reference internal" href="references.html#shon2000" id="id11"><span>[Shon2000]</span></a>, <a class="reference internal" href="references.html#gaarde2008" id="id12"><span>[Gaarde2008]</span></a>, <a class="reference internal" href="references.html#tosa2009" id="id13"><span>[Tosa2009]</span></a>, <a class="reference internal" href="references.html#tosa2016" id="id14"><span>[Tosa2016]</span></a>, and <a class="reference internal" href="references.html#schroder2025" id="id15"><span>[Schröder2025]</span></a>.
+While computationally efficient, these codes are limited by the SFA and can suffer from inaccuracies compared to dipole moments calculated from the Time-Dependent Schrödinger Equation (TDSE).</p>
+<p>An alternative approach was introduced by <a class="reference internal" href="references.html#vabek2025" id="id16"><span>[Vábek2025]</span></a>. In that procedure, the wave equation for the fundamental field is solved in the time domain.
+The microscopic response is then calculated at each time step by solving the 1D-TDSE under the Single Active Electron (SAE) approximation.
+The harmonics are finally propagated using a Hankel transform. Although less restrictive, this approach is computationally demanding.</p>
+<p>In the <strong class="program">HarP</strong> code, the dipole moment is provided from precomputed external tables.
+These tables map the dipole moment (absolute value and phase) as a function of the laser intensity and harmonic order (see <a class="reference internal" href="../practice/namelist.html"><span class="doc">namelist</span></a> for the appropriate format).</p>
+<p>Precomputed tables allow <strong class="program">HarP</strong> to incorporate sophisticated microscopic response models without increasing the computational cost.
+However, these tables are linked to a specific laser wavelength and atomic species.
+Additionally, this approach relies on the assumption that the dipole moment is a function of the local fundamental field only. This being justified by the slowly varying envelope approximation.</p>
+<p>In the current version of <strong class="program">HarP</strong>, two tables, computed from <strong>3D-TDSE</strong> within <strong>SAE</strong> approximation, are provided for an
+incident laser wavelength of <span class="math notranslate nohighlight">\(810\)</span> nm interacting with Neon and Argon. These tables were generated following the methodology introduced in <a class="reference internal" href="references.html#kulandershore1990" id="id17"><span>[KulanderShore1990]</span></a>.
+A driving field featuring a five-cycle ramp-up, a five-cycle constant-amplitude plateau, and a five-cycle ramp-down is applied to the atom.
+The interaction is simulated by solving the 3D-TDSE as modelled in <a class="reference internal" href="references.html#carlstrom2022" id="id18"><span>[Carlstrom2022]</span></a>.
+Once transient dynamics have subsided, the dipole moment is Fourier-transformed over the plateau region. Repeating this simulation across a range of peak laser intensities yields a map of the dipole response as a function of laser intensity and harmonic order for a given atomic species and driving wavelength.</p>
+<p>Since the dipole tables are associated with a specific wavelength, the tabulated approach requires a pulse duration that is long relative to the optical period (<span class="math notranslate nohighlight">\(\mathbf{T_{fwhm}\gg 1/\omega}\)</span>).
+Otherwise, spectral broadening of the fundamental field causes multiple photon energies to contribute to harmonic generation.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Because of the spin degeneracy in the SAE approximation, the tabulated dipole moment and ionisation rate are a factor of 2 smaller than the ones defined in Eqs. <a class="reference internal" href="#equation-eqpq">(3)</a> and <a class="reference internal" href="#equation-eqdensity">(4)</a>. This factor is taken into account when loading the tables through the <code class="docutils literal notranslate"><span class="pre">statistical_factor</span></code> arguments.</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="density">
+<h2>Density<a class="headerlink" href="#density" title="Link to this heading">¶</a></h2>
+<p>As the intense laser pulse propagates through the target medium, it ionises the gas, altering the local atomic and electronic densities. This evolution is governed by the population equations:</p>
+<div class="math notranslate nohighlight" id="equation-eqdensity">
+<span class="eqno">(4)<a class="headerlink" href="#equation-eqdensity" title="Link to this equation">¶</a></span>\[\begin{split}\begin{aligned}
+    \rho_a(r,z,t) &amp;= \rho_g(r,z)e^{-\int^t w(E_1(r,z,t'))dt'}, \\
+    \rho_e(r,z,t) &amp;= \rho_g(r,z)-\rho_a(r,z,t)
+\end{aligned}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(w\)</span> denotes the ionisation rate. Because the fundamental photon energy is significantly lower than the harmonic energies, the ionisation rate is calculated solely from the local fundamental field amplitude.</p>
+<p>The ionisation rate is evaluated by interpolating precomputed tables, mapping <span class="math notranslate nohighlight">\(w\)</span> to the laser intensity (see <a class="reference internal" href="../practice/namelist.html"><span class="doc">namelist</span></a> for the appropriate format).
+These tables can be generated using standard cycle-averaged ionisation rate models such as PPT <a class="reference internal" href="references.html#perelomov1966" id="id19"><span>[Perelomov1966]</span></a> or ADK <a class="reference internal" href="references.html#ammosov1986" id="id20"><span>[Ammosov1986]</span></a>.
+For maximum accuracy, the ionisation rates can also be extracted directly from 3D-TDSE SAE calculations, also used for the dipole calculation.
+The current version of <strong class="program">HarP</strong> provides 3D-TDSE SAE rate tables for an <span class="math notranslate nohighlight">\(810\)</span> nm laser propagating in Argon and Neon.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      <div>
+      <a href="https://github.com/HarmonicPropagation/HarP">Github</a>
+      </div>
+      <div>
+        <a href="../citation.html">
+            Cite this work
+        </a>
+      </div>
+      
+      <div>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 9.1.0</a>
+      </div>
+      
+      <div class="footer">
+        Theme by 
+        <a href="https://github.com/SmileiPIC/Smilei">
+            Smilei 5.1
+        </a>
+      </div>
+    </div>
+    
+    <script type="text/javascript">
+        
+        var nav = document.getElementById("nav");
+        var nav_list = document.getElementById("nav_list");
+        var nav_button = document.getElementById("nav_button");
+        var smallScreenMenu = document.getElementById("smallScreenMenu");
+        var smallScreenMenuButton = document.getElementById("smallScreenMenuButton");
+        var searchicon = document.getElementById("searchicon");
+        var searchbox  = document.getElementById("searchbox");
+        var searchinput= document.getElementById("searchinput");
+        var menus = document.getElementsByClassName("menu");
+        for( var i=0; i<menus.length; i++ )
+            menus[i].active = false;
+        
+        
+        var ul = nav_list.getElementsByTagName("ul")[0], li;
+        var keep_nav = false;
+        if( ul ) {
+            li = ul.firstElementChild;
+            if( li ) {
+                if( li.getElementsByTagName("ul").length > 0 ) keep_nav = true;
+            }
+        }
+        if( keep_nav ) {
+            li.removeChild( li.firstElementChild );
+        } else {
+            document.getElementById("nav_positioner").removeChild( document.getElementById("nav") );
+        }
+        
+        function navOff() {
+            nav_list.style.display = "none";
+            nav_button.className = "";
+            nav.style.overflowY = "visible";
+        }
+        
+        function toggleNav() {
+            for( var i=0; i<menus.length; i++ )
+                menuOff( menus[i] );
+            if( nav_list.style.display != "inline-block" ) {
+                nav_list.style.display = "inline-block";
+                nav_button.className = "pushed";
+                nav.style.overflowY = "auto";
+            } else {
+                navOff();
+            }
+        }
+        
+        function toggleSmallScreenMenu(e) {
+            e.preventDefault();
+            if( smallScreenMenu.className != "on" ) {
+                smallScreenMenu.className = "on";
+                smallScreenMenuButton.className = "pushed";
+                document.documentElement.style.overflow = "hidden";
+            } else {
+                smallScreenMenu.className = "off";
+                smallScreenMenuButton.className = "";
+                document.documentElement.style.overflow = "";
+            }
+        }
+        
+        function prepareMenu(menu_id) {
+            var menu = document.getElementById(menu_id);
+            menu.timer1 = setTimeout(function(a){ return function(){thisMenuOnly(a)};}(menu_id), 100);
+            menu.addEventListener("mouseleave", function(a){ return function(){clearTimeout(a.timer1)};}(menu) );
+        }
+        
+        function leaveMenu(menu_id, source) {
+            var menu = document.getElementById(menu_id);
+            menu.timer2 = setTimeout(function(a){ return function(){menuOff(a)};}(menu), 1000);
+            source.addEventListener("mouseenter", function(a){ return function(){clearTimeout(a.timer2)};}(menu) );
+        }
+        
+        function menuOn( menu ) {
+            var divs = menu.getElementsByTagName("div");
+            if(nav_list) navOff();
+            divs[1].className = "on";
+            divs[0].className = "menuButton pushed";
+            menu.active = true;
+        }
+        function menuOff( menu ) {
+            var divs = menu.getElementsByTagName("div");
+            divs[1].className = "off";
+            divs[0].className = "menuButton";
+            menu.active = false;
+        }
+        
+        function thisMenuOnly(menu_id) {
+            var menu = document.getElementById(menu_id);
+            for( var i=0; i<menus.length; i++ )
+                if( i!=menu_id )
+                    menuOff( menus[i] );
+            menuOn( menu );
+        }
+        
+        function toggleMenu(menu_id) {
+            var menu = document.getElementById(menu_id);
+            if( menu.active ) {
+                menuOff( menu );
+            } else {
+                for( var i=0; i<menus.length; i++ )
+                    if( i!=menu_id )
+                        menuOff( menus[i] );
+                menuOn( menu );
+            }
+        }
+        
+        function openSearch() {
+            for( var i=0; i<menus.length; i++ ) {
+                menuOff( menus[i] );
+                menus[i].style.zIndex = "-1";
+            }
+            searchicon.style.display = "none";
+            closesearchicon.style.display = "block";
+            searchbox.style.display = "block";
+            searchinput.focus();
+        }
+        
+        function closeSearch() {
+            searchicon.style.display = "block";
+            closesearchicon.style.display = "none";
+            searchbox .style.display = "none";
+            for( var i=0; i<menus.length; i++ )
+                menus[i].style.zIndex = "0";
+        }
+        
+        
+        var documentDiv = document.getElementsByClassName("document")[0];
+        documentDiv.addEventListener('click', function (event) {
+            if(nav_list) navOff();
+            for( var i=0; i<menus.length; i++ )
+                menuOff( menus[i] );
+        });
+    </script>
+  </body>
+</html>

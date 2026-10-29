@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Far Field Propagation &#8212; HarP 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/smilei_theme.css?v=526adb52" />
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Limitations" href="limitation.html" />
+    <link rel="prev" title="HarP Algorithm" href="harp_algorithm.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      scale: 95,
+      availableFonts: ["TeX"]
+    }
+  });
+  </script>
+   
+  </head><body>
+
+<div id="smallScreenMenu" class="off">
+
+    
+    <div class="toctree-smilei">
+        <ul>
+                <li class="outer">
+                    <a href="units.html">Units</a>
+                </li>
+                <li class="outer">
+                    <a href="harp_equations.html">HarP Equations</a>
+                </li>
+                <li class="outer">
+                    <a href="harp_algorithm.html">HarP Algorithm</a>
+                </li>
+            </ul>
+                <ul>
+<li><a class="reference internal" href="#">Far Field Propagation</a><ul>
+<li><a class="reference internal" href="#hankel-transformation">Hankel transformation</a></li>
+<li><a class="reference internal" href="#envelope-equation-in-vacuum">Envelope equation in vacuum</a></li>
+<li><a class="reference internal" href="#numerical-procedure">Numerical procedure</a></li>
+</ul>
+</li>
+</ul>
+
+            <ul>
+                <li class="outer">
+                    <a href="limitation.html">Limitations</a>
+                </li>
+                <li class="outer">
+                    <a href="references.html">References</a>
+                </li>
+        </ul>
+        <hr />
+        <ul>
+                <li class="outer">
+                    <a href="../practice/namelist.html">Namelist</a>
+                </li>
+                <li class="outer">
+                    <a href="../practice/installation.html">First Simulation</a>
+                </li>
+                <li class="outer">
+                    <a href="../practice/post_process.html">Post-Process</a>
+                </li>
+        </ul>
+        <hr />
+    </div>
+
+</div>
+<div id="hcontainer">
+    <div id="nav_positioner">
+        <div id="nav">
+            <div id="nav_button" onclick="toggleNav()">
+                Sections
+            </div>
+            <div id="nav_list" class="toctree-smilei">
+                <div id="nav_title"><a href="#">Far Field Propagation</a></div>
+                <ul>
+<li><a class="reference internal" href="#">Far Field Propagation</a><ul>
+<li><a class="reference internal" href="#hankel-transformation">Hankel transformation</a></li>
+<li><a class="reference internal" href="#envelope-equation-in-vacuum">Envelope equation in vacuum</a></li>
+<li><a class="reference internal" href="#numerical-procedure">Numerical procedure</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="headercolor">
+    </div>
+    <div class="hpositioner">
+        <div class="header">
+        <div class="logo">
+            <a href="../index.html">
+                <img class="logo" src="../_static/HarPLogoWhite.svg" alt="Logo" />
+            </a>
+        </div>
+        <div class="menu"
+            id="menu_Theory"
+            style="font-weight:bold"
+        >
+            <div id="menuButton_Theory" class="menuButton"
+                 onmouseenter="prepareMenu('menu_Theory')"
+                 onmousedown="event.preventDefault()"
+            >
+                <a href="../theory.html">
+                    <span>Theory</span>
+                </a>
+            </div>
+            <div class="off" onmouseleave="leaveMenu('menu_Theory',this)">
+                <div class="toctree-smilei">
+                    <ul>
+                        <li class="outer">
+                            <a href="units.html">Units</a>
+                        </li>
+                        <li class="outer">
+                            <a href="harp_equations.html">HarP Equations</a>
+                        </li>
+                        <li class="outer">
+                            <a href="harp_algorithm.html">HarP Algorithm</a>
+                        </li>
+                        <li >
+                            <a href="#">Far Field Propagation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="limitation.html">Limitations</a>
+                        </li>
+                        <li class="outer">
+                            <a href="references.html">References</a>
+                        </li>
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="last menu"
+            id="menu_Practice"
+            
+        >
+            <div id="menuButton_Practice" class="menuButton"
+                 onmouseenter="prepareMenu('menu_Practice')"
+                 onmousedown="event.preventDefault()"
+            >
+                <a href="../practice.html">
+                    <span>Practice</span>
+                </a>
+            </div>
+            <div class="off" onmouseleave="leaveMenu('menu_Practice',this)">
+                <div class="toctree-smilei">
+                    <ul>
+                        <li class="outer">
+                            <a href="../practice/namelist.html">Namelist</a>
+                        </li>
+                        <li class="outer">
+                            <a href="../practice/installation.html">First Simulation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="../practice/post_process.html">Post-Process</a>
+                        </li>
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+            var es=document.getElementsByClassName("menuButton"), i=0;
+            var evt = "ontouchend" in document ? "touchend" : "click";
+            for( var i=0; i<es.length; i+=1 ) {
+                es[i].addEventListener(evt, function(a){ return function(){toggleMenu(a)};}(es[i].parentNode.id));
+            }
+        </script>
+        
+        <div id="searchbox" role="search" style="display:none">
+            <form class="search" action="../search.html" method="get">
+              <input type="text" name="q" placeholder="Search" id="searchinput" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+        
+        <div id="searchicon" onclick="openSearch()" style="display:block">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 80 120">
+              <g transform="translate(0,-932.36216)" >
+                <circle
+                   r="25" cy="977.51044" cx="38.078663"
+                   style="opacity:1;fill:none;stroke:#ffffff;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                <rect
+                   transform="matrix(0.36717877,0.93015039,-0.93427297,0.35655858,0,0)"
+                   rx="4.9996676" ry="7.4995141"
+                   y="316.16959" x="947.6142"
+                   height="14.117695" width="46.476151"
+                   style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;" />
+                <path
+                   d="m 41.383282,962.25996 a 15,15 0 0 1 11.660107,11.6355"
+                   style="opacity:1;fill:none;stroke:#ffffff;stroke-width:3;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+              </g>
+            </svg>
+        </div>
+        <div id="closesearchicon" onclick="closeSearch()" style="display:none">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 80 120">
+              <g
+                 transform="translate(0,-932.36216)">
+                <path
+                   d="m 10,962.36216 60,60.00004"
+                   style="fill:none;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+                <path
+                   d="M 70,962.36216 10,1022.3622"
+                   style="fill:none;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+              </g>
+            </svg>
+        </div>
+        
+        <div id="smallScreenMenuButton" onclick="toggleSmallScreenMenu(event)">
+            <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"
+               viewBox="-20 -20 140 140">
+              <g  style="fill:#ffffff;stroke:none;">
+                <circle cx="15" cy="20" r="5" />
+                <circle cx="35" cy="20" r="5" />
+                <circle cx="85" cy="20" r="5" />
+                <rect width="50" height="10" x="35" y="15" rx="0" ry="0" />
+                <circle cx="15" cy="40" r="5" />
+                <circle cx="35" cy="40" r="5" />
+                <circle cx="85" cy="40" r="5" />
+                <rect width="50" height="10" x="35" y="35" rx="0" ry="0" />
+                <circle cx="15" cy="60" r="5" />
+                <circle cx="35" cy="60" r="5" />
+                <circle cx="85" cy="60" r="5" />
+                <rect width="50" height="10" x="35" y="55" rx="0" ry="0" />
+                <circle cx="15" cy="80" r="5" />
+                <circle cx="35" cy="80" r="5" />
+                <circle cx="85" cy="80" r="5" />
+                <rect width="50" height="10" x="35" y="75" rx="0" ry="0" />
+              </g>
+            </svg>
+        </div>
+        
+    </div>
+    
+</div>
+</div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="far-field-propagation">
+<h1>Far Field Propagation<a class="headerlink" href="#far-field-propagation" title="Link to this heading">¶</a></h1>
+<p>Since the HarP algorithm is limited by the longitudinal box size, to propagate the field far from the exit of the gas, it is convenient to solve the field propagation in vacuum using the Hankel transform.
+In this section, we derive the mathematical and numerical framework for this purpose.</p>
+<hr class="docutils" />
+<section id="hankel-transformation">
+<h2>Hankel transformation<a class="headerlink" href="#hankel-transformation" title="Link to this heading">¶</a></h2>
+<p>For the sake of completeness, we remind the Hankel transform of order <span class="math notranslate nohighlight">\(\nu\)</span> of an arbitrary function <span class="math notranslate nohighlight">\(f(r)\)</span> <a class="reference internal" href="references.html#hankeltransform" id="id1"><span>[HankelTransform]</span></a>:</p>
+<div class="math notranslate nohighlight">
+\[F_\nu(k) = \int_0^\infty f(r)J_\nu (k r) r dr\]</div>
+<p>and its inverse transformation:</p>
+<div class="math notranslate nohighlight">
+\[f(r) = \int_0^\infty F_\nu(k)J_\nu (k r) k dk,\]</div>
+<p>where <span class="math notranslate nohighlight">\(J_\nu\)</span> denotes the Bessel function of the first kind of order <span class="math notranslate nohighlight">\(\nu\geq -1/2\)</span>. By construction, the Bessel function <span class="math notranslate nohighlight">\(J_\nu\)</span> satisfies the differential equation:</p>
+<div class="math notranslate nohighlight">
+\[x^2 J_\nu''(x) + J_\nu'(x) + x^2 J_\nu(x) = \nu^2 J_\nu(x),\]</div>
+<p>where the prime notation corresponds to the successive derivatives of <span class="math notranslate nohighlight">\(J_\nu(x)\)</span> with respect to <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</section>
+<hr class="docutils" />
+<section id="envelope-equation-in-vacuum">
+<h2>Envelope equation in vacuum<a class="headerlink" href="#envelope-equation-in-vacuum" title="Link to this heading">¶</a></h2>
+<p>In vacuum the <strong>paraxial Helmholtz equation</strong> for the field envelope of harmonic <span class="math notranslate nohighlight">\(q\)</span> reads:</p>
+<div class="math notranslate nohighlight" id="equation-eqparaxialhelmholtz">
+<span class="eqno">(5)<a class="headerlink" href="#equation-eqparaxialhelmholtz" title="Link to this equation">¶</a></span>\[r^2 \partial_r^2 E_q + r \partial_r E_q + 2i \frac{q\omega}{c}r^2 \partial_z E_q = 0.\]</div>
+<p>This could be directly derived from Eq. <a class="reference internal" href="harp_equations.html#equation-eqenvelopeq">(2)</a> noting that there is no variation of the background densities (in vacuum <span class="math notranslate nohighlight">\(\Delta k_q = 0\)</span> and <span class="math notranslate nohighlight">\(\delta k_q = 0\)</span>).</p>
+<p>Let <span class="math notranslate nohighlight">\(\tilde{E}_{q}\)</span> be the Hankel transform of order <span class="math notranslate nohighlight">\(0\)</span> of the field envelope <span class="math notranslate nohighlight">\(E_{q}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[E_{q}(r,z) = \int_0^\infty \tilde{E}_{q}(k,z) J_0 (k r) k dk\]</div>
+<p>and injecting in the paraxial Helmholtz equation Eq. <a class="reference internal" href="#equation-eqparaxialhelmholtz">(5)</a>, we obtain the differential equation for the Hankel transform:</p>
+<div class="math notranslate nohighlight">
+\[-k^2 \tilde{E}_{q}(k,z) + 2i \frac{q\omega}{c} \partial_z \tilde{E}_{q}(k,z) = 0,\]</div>
+<p>which admits the solution:</p>
+<div class="math notranslate nohighlight">
+\[\tilde{E}_{q}(k,z) = \tilde{E}_{q}(k,z=z_0) \exp{\left[-i \frac{c k^2}{q\omega} (z-z_0)\right]}.\]</div>
+<p>These properties are used to propagate the field far from the exit of the target as described below.</p>
+</section>
+<hr class="docutils" />
+<section id="numerical-procedure">
+<h2>Numerical procedure<a class="headerlink" href="#numerical-procedure" title="Link to this heading">¶</a></h2>
+<p>The field envelope at the end of the simulation box <span class="math notranslate nohighlight">\(E_q(r,z=Lz)\)</span> is calculated using the <a class="reference internal" href="harp_algorithm.html"><span class="doc">HarP algorithm</span></a>.
+The numerical solution is used as an input for the propagation at any given longitudinal position <span class="math notranslate nohighlight">\(z \geq Lz\)</span>.
+To compute the field far from the exit box, we apply the following three distinct steps:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><dl>
+<dt>First, the Hankel transform <span class="math notranslate nohighlight">\(\tilde{E}_{q}\)</span> of the field envelope at the rear of the target is calculated according to:</dt><dd><div class="math notranslate nohighlight">
+\[\tilde{E}_{q}(k,z=Lz) = \int_0^\infty E_{q}(r,z=Lz) J_0 (k r) r dr\]</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Second, it is propagated to an arbitrary position using:</dt><dd><div class="math notranslate nohighlight">
+\[\tilde{E}_{q}(k,z) = \tilde{E}_{q}(k,z=Lz) \exp{\left[-i \frac{c k^2}{q\omega} (z-Lz)\right]}\]</div>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Finally, the field envelope is reconstructed from the inverse Hankel transform:</dt><dd><div class="math notranslate nohighlight">
+\[E_{q}(r,z) = \int_0^\infty \tilde{E}_{q}(k,z) J_0 (k r) k dk\]</div>
+</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+<p>At each time slice, when the field reaches the simulation box limit, these three steps are applied to propagate the field.
+The vector <span class="math notranslate nohighlight">\(k\)</span> is uniformly distributed from <span class="math notranslate nohighlight">\(0\)</span> to <span class="math notranslate nohighlight">\(\min(\pi / \Delta r, \alpha q\omega/c )\)</span>.
+The limit corresponds to the minimum between the Nyquist frequency and the paraxial approximation. It ensures that at least two points discretise the wavelength through the condition <span class="math notranslate nohighlight">\(k&lt;\pi / \Delta r\)</span> (Nyquist limit).
+It also ensures that the angle between the wave and the optical axis remains small (paraxial approximation <span class="math notranslate nohighlight">\(k_\perp \ll q\omega/c\)</span>) through the condition <span class="math notranslate nohighlight">\(k_\perp \ll \alpha q\omega/c\)</span> where <span class="math notranslate nohighlight">\(\alpha\)</span> is an arbitrary number below unity.
+This discretisation is used to compute the Hankel transform integrals with a Riemann sum.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As the transverse dimension is uniformly discretised in the HarP loop, the wavevector <span class="math notranslate nohighlight">\(k\)</span> is also uniformly discretised.
+However, for the numerical evaluation of the Hankel transforms, a discretisation based on the zeros of the Bessel function provides a more appropriate choice to ensure the grid resolves the oscillation of <span class="math notranslate nohighlight">\(J_0\)</span>.
+We therefore plan to implement a non-uniform, Bessel-zero-based discretisation in future work.</p>
+</div>
+<p>This calculation is not part of the HarP algorithm but a branch inside the Diagnostics <code class="docutils literal notranslate"><span class="pre">DiagFarField</span></code> (practical application described in the <a class="reference internal" href="../practice/namelist.html"><span class="doc">namelist</span></a>).
+It allows the efficient calculation of the field far from the exit of the gas without increasing the simulation box length.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      <div>
+      <a href="https://github.com/HarmonicPropagation/HarP">Github</a>
+      </div>
+      <div>
+        <a href="../citation.html">
+            Cite this work
+        </a>
+      </div>
+      
+      <div>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 9.1.0</a>
+      </div>
+      
+      <div class="footer">
+        Theme by 
+        <a href="https://github.com/SmileiPIC/Smilei">
+            Smilei 5.1
+        </a>
+      </div>
+    </div>
+    
+    <script type="text/javascript">
+        
+        var nav = document.getElementById("nav");
+        var nav_list = document.getElementById("nav_list");
+        var nav_button = document.getElementById("nav_button");
+        var smallScreenMenu = document.getElementById("smallScreenMenu");
+        var smallScreenMenuButton = document.getElementById("smallScreenMenuButton");
+        var searchicon = document.getElementById("searchicon");
+        var searchbox  = document.getElementById("searchbox");
+        var searchinput= document.getElementById("searchinput");
+        var menus = document.getElementsByClassName("menu");
+        for( var i=0; i<menus.length; i++ )
+            menus[i].active = false;
+        
+        
+        var ul = nav_list.getElementsByTagName("ul")[0], li;
+        var keep_nav = false;
+        if( ul ) {
+            li = ul.firstElementChild;
+            if( li ) {
+                if( li.getElementsByTagName("ul").length > 0 ) keep_nav = true;
+            }
+        }
+        if( keep_nav ) {
+            li.removeChild( li.firstElementChild );
+        } else {
+            document.getElementById("nav_positioner").removeChild( document.getElementById("nav") );
+        }
+        
+        function navOff() {
+            nav_list.style.display = "none";
+            nav_button.className = "";
+            nav.style.overflowY = "visible";
+        }
+        
+        function toggleNav() {
+            for( var i=0; i<menus.length; i++ )
+                menuOff( menus[i] );
+            if( nav_list.style.display != "inline-block" ) {
+                nav_list.style.display = "inline-block";
+                nav_button.className = "pushed";
+                nav.style.overflowY = "auto";
+            } else {
+                navOff();
+            }
+        }
+        
+        function toggleSmallScreenMenu(e) {
+            e.preventDefault();
+            if( smallScreenMenu.className != "on" ) {
+                smallScreenMenu.className = "on";
+                smallScreenMenuButton.className = "pushed";
+                document.documentElement.style.overflow = "hidden";
+            } else {
+                smallScreenMenu.className = "off";
+                smallScreenMenuButton.className = "";
+                document.documentElement.style.overflow = "";
+            }
+        }
+        
+        function prepareMenu(menu_id) {
+            var menu = document.getElementById(menu_id);
+            menu.timer1 = setTimeout(function(a){ return function(){thisMenuOnly(a)};}(menu_id), 100);
+            menu.addEventListener("mouseleave", function(a){ return function(){clearTimeout(a.timer1)};}(menu) );
+        }
+        
+        function leaveMenu(menu_id, source) {
+            var menu = document.getElementById(menu_id);
+            menu.timer2 = setTimeout(function(a){ return function(){menuOff(a)};}(menu), 1000);
+            source.addEventListener("mouseenter", function(a){ return function(){clearTimeout(a.timer2)};}(menu) );
+        }
+        
+        function menuOn( menu ) {
+            var divs = menu.getElementsByTagName("div");
+            if(nav_list) navOff();
+            divs[1].className = "on";
+            divs[0].className = "menuButton pushed";
+            menu.active = true;
+        }
+        function menuOff( menu ) {
+            var divs = menu.getElementsByTagName("div");
+            divs[1].className = "off";
+            divs[0].className = "menuButton";
+            menu.active = false;
+        }
+        
+        function thisMenuOnly(menu_id) {
+            var menu = document.getElementById(menu_id);
+            for( var i=0; i<menus.length; i++ )
+                if( i!=menu_id )
+                    menuOff( menus[i] );
+            menuOn( menu );
+        }
+        
+        function toggleMenu(menu_id) {
+            var menu = document.getElementById(menu_id);
+            if( menu.active ) {
+                menuOff( menu );
+            } else {
+                for( var i=0; i<menus.length; i++ )
+                    if( i!=menu_id )
+                        menuOff( menus[i] );
+                menuOn( menu );
+            }
+        }
+        
+        function openSearch() {
+            for( var i=0; i<menus.length; i++ ) {
+                menuOff( menus[i] );
+                menus[i].style.zIndex = "-1";
+            }
+            searchicon.style.display = "none";
+            closesearchicon.style.display = "block";
+            searchbox.style.display = "block";
+            searchinput.focus();
+        }
+        
+        function closeSearch() {
+            searchicon.style.display = "block";
+            closesearchicon.style.display = "none";
+            searchbox .style.display = "none";
+            for( var i=0; i<menus.length; i++ )
+                menus[i].style.zIndex = "0";
+        }
+        
+        
+        var documentDiv = document.getElementsByClassName("document")[0];
+        documentDiv.addEventListener('click', function (event) {
+            if(nav_list) navOff();
+            for( var i=0; i<menus.length; i++ )
+                menuOff( menus[i] );
+        });
+    </script>
+  </body>
+</html>

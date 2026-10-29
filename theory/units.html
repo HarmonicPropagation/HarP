@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Units &#8212; HarP 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/smilei_theme.css?v=526adb52" />
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="HarP Equations" href="harp_equations.html" />
+    <link rel="prev" title="Theory" href="../theory.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      scale: 95,
+      availableFonts: ["TeX"]
+    }
+  });
+  </script>
+   
+  </head><body>
+
+<div id="smallScreenMenu" class="off">
+
+    
+    <div class="toctree-smilei">
+        <ul>
+            </ul>
+                <ul>
+<li><a class="reference internal" href="#">Units</a><ul>
+<li><a class="reference internal" href="#notation">Notation</a></li>
+<li><a class="reference internal" href="#reference-quantities">Reference quantities</a></li>
+<li><a class="reference internal" href="#dimensionless-equations">Dimensionless equations</a></li>
+</ul>
+</li>
+</ul>
+
+            <ul>
+                <li class="outer">
+                    <a href="harp_equations.html">HarP Equations</a>
+                </li>
+                <li class="outer">
+                    <a href="harp_algorithm.html">HarP Algorithm</a>
+                </li>
+                <li class="outer">
+                    <a href="vacuum_propagation.html">Far Field Propagation</a>
+                </li>
+                <li class="outer">
+                    <a href="limitation.html">Limitations</a>
+                </li>
+                <li class="outer">
+                    <a href="references.html">References</a>
+                </li>
+        </ul>
+        <hr />
+        <ul>
+                <li class="outer">
+                    <a href="../practice/namelist.html">Namelist</a>
+                </li>
+                <li class="outer">
+                    <a href="../practice/installation.html">First Simulation</a>
+                </li>
+                <li class="outer">
+                    <a href="../practice/post_process.html">Post-Process</a>
+                </li>
+        </ul>
+        <hr />
+    </div>
+
+</div>
+<div id="hcontainer">
+    <div id="nav_positioner">
+        <div id="nav">
+            <div id="nav_button" onclick="toggleNav()">
+                Sections
+            </div>
+            <div id="nav_list" class="toctree-smilei">
+                <div id="nav_title"><a href="#">Units</a></div>
+                <ul>
+<li><a class="reference internal" href="#">Units</a><ul>
+<li><a class="reference internal" href="#notation">Notation</a></li>
+<li><a class="reference internal" href="#reference-quantities">Reference quantities</a></li>
+<li><a class="reference internal" href="#dimensionless-equations">Dimensionless equations</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="headercolor">
+    </div>
+    <div class="hpositioner">
+        <div class="header">
+        <div class="logo">
+            <a href="../index.html">
+                <img class="logo" src="../_static/HarPLogoWhite.svg" alt="Logo" />
+            </a>
+        </div>
+        <div class="menu"
+            id="menu_Theory"
+            style="font-weight:bold"
+        >
+            <div id="menuButton_Theory" class="menuButton"
+                 onmouseenter="prepareMenu('menu_Theory')"
+                 onmousedown="event.preventDefault()"
+            >
+                <a href="../theory.html">
+                    <span>Theory</span>
+                </a>
+            </div>
+            <div class="off" onmouseleave="leaveMenu('menu_Theory',this)">
+                <div class="toctree-smilei">
+                    <ul>
+                        <li >
+                            <a href="#">Units</a>
+                        </li>
+                        <li class="outer">
+                            <a href="harp_equations.html">HarP Equations</a>
+                        </li>
+                        <li class="outer">
+                            <a href="harp_algorithm.html">HarP Algorithm</a>
+                        </li>
+                        <li class="outer">
+                            <a href="vacuum_propagation.html">Far Field Propagation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="limitation.html">Limitations</a>
+                        </li>
+                        <li class="outer">
+                            <a href="references.html">References</a>
+                        </li>
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="last menu"
+            id="menu_Practice"
+            
+        >
+            <div id="menuButton_Practice" class="menuButton"
+                 onmouseenter="prepareMenu('menu_Practice')"
+                 onmousedown="event.preventDefault()"
+            >
+                <a href="../practice.html">
+                    <span>Practice</span>
+                </a>
+            </div>
+            <div class="off" onmouseleave="leaveMenu('menu_Practice',this)">
+                <div class="toctree-smilei">
+                    <ul>
+                        <li class="outer">
+                            <a href="../practice/namelist.html">Namelist</a>
+                        </li>
+                        <li class="outer">
+                            <a href="../practice/installation.html">First Simulation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="../practice/post_process.html">Post-Process</a>
+                        </li>
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+            var es=document.getElementsByClassName("menuButton"), i=0;
+            var evt = "ontouchend" in document ? "touchend" : "click";
+            for( var i=0; i<es.length; i+=1 ) {
+                es[i].addEventListener(evt, function(a){ return function(){toggleMenu(a)};}(es[i].parentNode.id));
+            }
+        </script>
+        
+        <div id="searchbox" role="search" style="display:none">
+            <form class="search" action="../search.html" method="get">
+              <input type="text" name="q" placeholder="Search" id="searchinput" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+        
+        <div id="searchicon" onclick="openSearch()" style="display:block">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 80 120">
+              <g transform="translate(0,-932.36216)" >
+                <circle
+                   r="25" cy="977.51044" cx="38.078663"
+                   style="opacity:1;fill:none;stroke:#ffffff;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                <rect
+                   transform="matrix(0.36717877,0.93015039,-0.93427297,0.35655858,0,0)"
+                   rx="4.9996676" ry="7.4995141"
+                   y="316.16959" x="947.6142"
+                   height="14.117695" width="46.476151"
+                   style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;" />
+                <path
+                   d="m 41.383282,962.25996 a 15,15 0 0 1 11.660107,11.6355"
+                   style="opacity:1;fill:none;stroke:#ffffff;stroke-width:3;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+              </g>
+            </svg>
+        </div>
+        <div id="closesearchicon" onclick="closeSearch()" style="display:none">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 80 120">
+              <g
+                 transform="translate(0,-932.36216)">
+                <path
+                   d="m 10,962.36216 60,60.00004"
+                   style="fill:none;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+                <path
+                   d="M 70,962.36216 10,1022.3622"
+                   style="fill:none;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+              </g>
+            </svg>
+        </div>
+        
+        <div id="smallScreenMenuButton" onclick="toggleSmallScreenMenu(event)">
+            <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"
+               viewBox="-20 -20 140 140">
+              <g  style="fill:#ffffff;stroke:none;">
+                <circle cx="15" cy="20" r="5" />
+                <circle cx="35" cy="20" r="5" />
+                <circle cx="85" cy="20" r="5" />
+                <rect width="50" height="10" x="35" y="15" rx="0" ry="0" />
+                <circle cx="15" cy="40" r="5" />
+                <circle cx="35" cy="40" r="5" />
+                <circle cx="85" cy="40" r="5" />
+                <rect width="50" height="10" x="35" y="35" rx="0" ry="0" />
+                <circle cx="15" cy="60" r="5" />
+                <circle cx="35" cy="60" r="5" />
+                <circle cx="85" cy="60" r="5" />
+                <rect width="50" height="10" x="35" y="55" rx="0" ry="0" />
+                <circle cx="15" cy="80" r="5" />
+                <circle cx="35" cy="80" r="5" />
+                <circle cx="85" cy="80" r="5" />
+                <rect width="50" height="10" x="35" y="75" rx="0" ry="0" />
+              </g>
+            </svg>
+        </div>
+        
+    </div>
+    
+</div>
+</div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="units">
+<h1>Units<a class="headerlink" href="#units" title="Link to this heading">¶</a></h1>
+<p>The wave equation is solved using dimensionless variables. Physical quantities are normalised following standard Particle-in-Cell (PIC) code conventions <a class="reference internal" href="references.html#derouillat2018" id="id1"><span>[Derouillat2018]</span></a>.</p>
+<hr class="docutils" />
+<section id="notation">
+<h2>Notation<a class="headerlink" href="#notation" title="Link to this heading">¶</a></h2>
+<p>Standard notation is adopted for physical constants: <span class="math notranslate nohighlight">\(c\)</span> for the speed of light, <span class="math notranslate nohighlight">\(m_e\)</span> for the electron mass,
+<span class="math notranslate nohighlight">\(e\)</span> for the elementary charge, <span class="math notranslate nohighlight">\(\varepsilon_0\)</span> for the vacuum permittivity and <span class="math notranslate nohighlight">\(\hbar\)</span> for the reduced Planck constant.
+The laser wavelength is denoted as <span class="math notranslate nohighlight">\(\lambda\)</span>, its angular frequency as <span class="math notranslate nohighlight">\(\omega=2\pi c/\lambda\)</span> and its vacuum wavevector <span class="math notranslate nohighlight">\(k=\omega/c\)</span>.</p>
+</section>
+<hr class="docutils" />
+<section id="reference-quantities">
+<h2>Reference quantities<a class="headerlink" href="#reference-quantities" title="Link to this heading">¶</a></h2>
+<p>To simplify the expression of the wave equation, all quantities used in  <strong class="program">HarP</strong> are expressed in normalised units based on the laser angular frequency <span class="math notranslate nohighlight">\(\omega\)</span>. The corresponding reference units are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Velocity <span class="math notranslate nohighlight">\(V_r = c\)</span></p></li>
+<li><p>Time <span class="math notranslate nohighlight">\(T_r = 1/\omega\)</span></p></li>
+<li><p>Length <span class="math notranslate nohighlight">\(L_r = c/\omega\)</span></p></li>
+<li><p>Energy <span class="math notranslate nohighlight">\(\mathcal{E}_r = \hbar \omega\)</span></p></li>
+<li><p>Electric field <span class="math notranslate nohighlight">\(E_r = m_e c \omega / e\)</span></p></li>
+<li><p>Density <span class="math notranslate nohighlight">\(\rho_r = \varepsilon_0 m_e \omega^2 /e^2\)</span></p></li>
+<li><p>Polarisability <span class="math notranslate nohighlight">\(\alpha_r = e^2/(m_e \omega^2)\)</span></p></li>
+<li><p>Second hyperpolarisability <span class="math notranslate nohighlight">\(\gamma_r = e^4/(m_e^3 c^2 \omega^4)\)</span></p></li>
+<li><p>Dipole <span class="math notranslate nohighlight">\(D_r = ec/\omega\)</span></p></li>
+</ul>
+</div></blockquote>
+<p>Note that, although the reference time is defined by <span class="math notranslate nohighlight">\(T_r\)</span>, the temporal grid does not necessarily need to resolve this
+timescale. Only the envelope of the field needs to be resolved.
+Similarly, the spatial grid resolution is determined by the laser waist and not by the laser wavelength.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>All quantities defined in the input file must be provided in normalised units unless other units are explicitly requested.</p>
+</div>
+<p>Output quantities can be automatically converted and saved in SI units upon request, see <a class="reference internal" href="../practice/namelist.html"><span class="doc">namelist</span></a>.</p>
+<hr class="docutils" />
+</section>
+<section id="dimensionless-equations">
+<span id="newsystemofeq"></span><h2>Dimensionless equations<a class="headerlink" href="#dimensionless-equations" title="Link to this heading">¶</a></h2>
+<p>In this system of units, the propagation equations introduced in <a class="reference internal" href="harp_equations.html"><span class="doc">HarP Equations</span></a> section take the following dimensionless form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{gathered}
+     \partial_r^2 E_q + \frac{1}{r}\partial_r E_q+ 2ik_{q,0}(z)\partial_z E_q +2k_{q,0} [\delta k_q(r,z)+ \Delta k_{q,0}(z)]E_q= - 2 q^2 \rho_a(r,z)d_q(r,z)e^{\mathbf{i}q\phi_1(r,z)}, \\
+     \,k_{1,0}(z)= 1+\rho_g(z)\frac{\alpha_0}{2}, \quad \quad \delta k_{1}(r,z)= -\frac{\rho_e(r,z)}{2}(1+\alpha_0)+\rho_a(r,z)\frac{3 }{8}\gamma E_1^2(r,z), \\
+     \,k_{q,0}(z)= q-\frac{\rho_g(z)}{2q}[f_1(q)-\mathbf{i}f_2(q)], \quad \quad \delta k_{q}(r,z)= -\frac{\rho_e(r,z)}{2q}\left[1-f_1(q)+\mathbf{i}f_2(q)\right], \\
+     \rho_a(r,z,t) = \rho_g(r,z)e^{-\int^t w(E_1(r,z,t'))dt'}, \quad \quad \rho_e(r,z,t) = \rho_g(r,z)-\rho_a(r,z,t).
+\end{gathered}\end{split}\]</div>
+<p>The partial derivatives are normalised to the reference length <span class="math notranslate nohighlight">\(L_r\)</span> or time <span class="math notranslate nohighlight">\(T_r\)</span>. The envelope profile <span class="math notranslate nohighlight">\(E_q\)</span> is expressed in units of <span class="math notranslate nohighlight">\(E_r\)</span>, the dipole <span class="math notranslate nohighlight">\(d_q\)</span> in units of <span class="math notranslate nohighlight">\(D_r\)</span>, and the polarisation and second hyperpolarisability are normalised to <span class="math notranslate nohighlight">\(\alpha_r\)</span> and <span class="math notranslate nohighlight">\(\gamma_r\)</span>, respectively.
+Likewise, the wavevectors <span class="math notranslate nohighlight">\(k_{q,0}\)</span> and their perturbations <span class="math notranslate nohighlight">\(\delta k_q\)</span> are normalised to <span class="math notranslate nohighlight">\(L_r\)</span>.
+Consequently, the vacuum wavevector of the q-th harmonic simply equals <span class="math notranslate nohighlight">\(q\)</span>.
+The equations governing electron and atomic densities are expressed in units of <span class="math notranslate nohighlight">\(\rho_r\)</span>.</p>
+<p>This set of equations is solved using the numerical procedure described in <a class="reference internal" href="harp_algorithm.html"><span class="doc">HarP Algorithm</span></a> section.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      <div>
+      <a href="https://github.com/HarmonicPropagation/HarP">Github</a>
+      </div>
+      <div>
+        <a href="../citation.html">
+            Cite this work
+        </a>
+      </div>
+      
+      <div>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 9.1.0</a>
+      </div>
+      
+      <div class="footer">
+        Theme by 
+        <a href="https://github.com/SmileiPIC/Smilei">
+            Smilei 5.1
+        </a>
+      </div>
+    </div>
+    
+    <script type="text/javascript">
+        
+        var nav = document.getElementById("nav");
+        var nav_list = document.getElementById("nav_list");
+        var nav_button = document.getElementById("nav_button");
+        var smallScreenMenu = document.getElementById("smallScreenMenu");
+        var smallScreenMenuButton = document.getElementById("smallScreenMenuButton");
+        var searchicon = document.getElementById("searchicon");
+        var searchbox  = document.getElementById("searchbox");
+        var searchinput= document.getElementById("searchinput");
+        var menus = document.getElementsByClassName("menu");
+        for( var i=0; i<menus.length; i++ )
+            menus[i].active = false;
+        
+        
+        var ul = nav_list.getElementsByTagName("ul")[0], li;
+        var keep_nav = false;
+        if( ul ) {
+            li = ul.firstElementChild;
+            if( li ) {
+                if( li.getElementsByTagName("ul").length > 0 ) keep_nav = true;
+            }
+        }
+        if( keep_nav ) {
+            li.removeChild( li.firstElementChild );
+        } else {
+            document.getElementById("nav_positioner").removeChild( document.getElementById("nav") );
+        }
+        
+        function navOff() {
+            nav_list.style.display = "none";
+            nav_button.className = "";
+            nav.style.overflowY = "visible";
+        }
+        
+        function toggleNav() {
+            for( var i=0; i<menus.length; i++ )
+                menuOff( menus[i] );
+            if( nav_list.style.display != "inline-block" ) {
+                nav_list.style.display = "inline-block";
+                nav_button.className = "pushed";
+                nav.style.overflowY = "auto";
+            } else {
+                navOff();
+            }
+        }
+        
+        function toggleSmallScreenMenu(e) {
+            e.preventDefault();
+            if( smallScreenMenu.className != "on" ) {
+                smallScreenMenu.className = "on";
+                smallScreenMenuButton.className = "pushed";
+                document.documentElement.style.overflow = "hidden";
+            } else {
+                smallScreenMenu.className = "off";
+                smallScreenMenuButton.className = "";
+                document.documentElement.style.overflow = "";
+            }
+        }
+        
+        function prepareMenu(menu_id) {
+            var menu = document.getElementById(menu_id);
+            menu.timer1 = setTimeout(function(a){ return function(){thisMenuOnly(a)};}(menu_id), 100);
+            menu.addEventListener("mouseleave", function(a){ return function(){clearTimeout(a.timer1)};}(menu) );
+        }
+        
+        function leaveMenu(menu_id, source) {
+            var menu = document.getElementById(menu_id);
+            menu.timer2 = setTimeout(function(a){ return function(){menuOff(a)};}(menu), 1000);
+            source.addEventListener("mouseenter", function(a){ return function(){clearTimeout(a.timer2)};}(menu) );
+        }
+        
+        function menuOn( menu ) {
+            var divs = menu.getElementsByTagName("div");
+            if(nav_list) navOff();
+            divs[1].className = "on";
+            divs[0].className = "menuButton pushed";
+            menu.active = true;
+        }
+        function menuOff( menu ) {
+            var divs = menu.getElementsByTagName("div");
+            divs[1].className = "off";
+            divs[0].className = "menuButton";
+            menu.active = false;
+        }
+        
+        function thisMenuOnly(menu_id) {
+            var menu = document.getElementById(menu_id);
+            for( var i=0; i<menus.length; i++ )
+                if( i!=menu_id )
+                    menuOff( menus[i] );
+            menuOn( menu );
+        }
+        
+        function toggleMenu(menu_id) {
+            var menu = document.getElementById(menu_id);
+            if( menu.active ) {
+                menuOff( menu );
+            } else {
+                for( var i=0; i<menus.length; i++ )
+                    if( i!=menu_id )
+                        menuOff( menus[i] );
+                menuOn( menu );
+            }
+        }
+        
+        function openSearch() {
+            for( var i=0; i<menus.length; i++ ) {
+                menuOff( menus[i] );
+                menus[i].style.zIndex = "-1";
+            }
+            searchicon.style.display = "none";
+            closesearchicon.style.display = "block";
+            searchbox.style.display = "block";
+            searchinput.focus();
+        }
+        
+        function closeSearch() {
+            searchicon.style.display = "block";
+            closesearchicon.style.display = "none";
+            searchbox .style.display = "none";
+            for( var i=0; i<menus.length; i++ )
+                menus[i].style.zIndex = "0";
+        }
+        
+        
+        var documentDiv = document.getElementsByClassName("document")[0];
+        documentDiv.addEventListener('click', function (event) {
+            if(nav_list) navOff();
+            for( var i=0; i<menus.length; i++ )
+                menuOff( menus[i] );
+        });
+    </script>
+  </body>
+</html>

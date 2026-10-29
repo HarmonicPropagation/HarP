@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Post-Process &#8212; HarP 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/smilei_theme.css?v=526adb52" />
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="First Simulation" href="installation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      scale: 95,
+      availableFonts: ["TeX"]
+    }
+  });
+  </script>
+   
+  </head><body>
+
+<div id="smallScreenMenu" class="off">
+
+    
+    <div class="toctree-smilei">
+        <ul>
+                <li class="outer">
+                    <a href="../theory/units.html">Units</a>
+                </li>
+                <li class="outer">
+                    <a href="../theory/harp_equations.html">HarP Equations</a>
+                </li>
+                <li class="outer">
+                    <a href="../theory/harp_algorithm.html">HarP Algorithm</a>
+                </li>
+                <li class="outer">
+                    <a href="../theory/vacuum_propagation.html">Far Field Propagation</a>
+                </li>
+                <li class="outer">
+                    <a href="../theory/limitation.html">Limitations</a>
+                </li>
+                <li class="outer">
+                    <a href="../theory/references.html">References</a>
+                </li>
+        </ul>
+        <hr />
+        <ul>
+                <li class="outer">
+                    <a href="namelist.html">Namelist</a>
+                </li>
+                <li class="outer">
+                    <a href="installation.html">First Simulation</a>
+                </li>
+            </ul>
+                <ul>
+<li><a class="reference internal" href="#">Post-Process</a><ul>
+<li><a class="reference internal" href="#load-hdf5-files">Load HDF5 files</a></li>
+<li><a class="reference internal" href="#fundamental-field-intensity">Fundamental field intensity</a></li>
+<li><a class="reference internal" href="#electronic-density">Electronic density</a></li>
+<li><a class="reference internal" href="#attosecond-field-intensity">Attosecond field intensity</a></li>
+<li><a class="reference internal" href="#conversion-efficiency">Conversion efficiency</a></li>
+</ul>
+</li>
+</ul>
+
+            <ul>
+        </ul>
+        <hr />
+    </div>
+
+</div>
+<div id="hcontainer">
+    <div id="nav_positioner">
+        <div id="nav">
+            <div id="nav_button" onclick="toggleNav()">
+                Sections
+            </div>
+            <div id="nav_list" class="toctree-smilei">
+                <div id="nav_title"><a href="#">Post-Process</a></div>
+                <ul>
+<li><a class="reference internal" href="#">Post-Process</a><ul>
+<li><a class="reference internal" href="#load-hdf5-files">Load HDF5 files</a></li>
+<li><a class="reference internal" href="#fundamental-field-intensity">Fundamental field intensity</a></li>
+<li><a class="reference internal" href="#electronic-density">Electronic density</a></li>
+<li><a class="reference internal" href="#attosecond-field-intensity">Attosecond field intensity</a></li>
+<li><a class="reference internal" href="#conversion-efficiency">Conversion efficiency</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="headercolor">
+    </div>
+    <div class="hpositioner">
+        <div class="header">
+        <div class="logo">
+            <a href="../index.html">
+                <img class="logo" src="../_static/HarPLogoWhite.svg" alt="Logo" />
+            </a>
+        </div>
+        <div class="menu"
+            id="menu_Theory"
+            
+        >
+            <div id="menuButton_Theory" class="menuButton"
+                 onmouseenter="prepareMenu('menu_Theory')"
+                 onmousedown="event.preventDefault()"
+            >
+                <a href="../theory.html">
+                    <span>Theory</span>
+                </a>
+            </div>
+            <div class="off" onmouseleave="leaveMenu('menu_Theory',this)">
+                <div class="toctree-smilei">
+                    <ul>
+                        <li class="outer">
+                            <a href="../theory/units.html">Units</a>
+                        </li>
+                        <li class="outer">
+                            <a href="../theory/harp_equations.html">HarP Equations</a>
+                        </li>
+                        <li class="outer">
+                            <a href="../theory/harp_algorithm.html">HarP Algorithm</a>
+                        </li>
+                        <li class="outer">
+                            <a href="../theory/vacuum_propagation.html">Far Field Propagation</a>
+                        </li>
+                        <li class="outer">
+                            <a href="../theory/limitation.html">Limitations</a>
+                        </li>
+                        <li class="outer">
+                            <a href="../theory/references.html">References</a>
+                        </li>
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="last menu"
+            id="menu_Practice"
+            style="font-weight:bold"
+        >
+            <div id="menuButton_Practice" class="menuButton"
+                 onmouseenter="prepareMenu('menu_Practice')"
+                 onmousedown="event.preventDefault()"
+            >
+                <a href="../practice.html">
+                    <span>Practice</span>
+                </a>
+            </div>
+            <div class="off" onmouseleave="leaveMenu('menu_Practice',this)">
+                <div class="toctree-smilei">
+                    <ul>
+                        <li class="outer">
+                            <a href="namelist.html">Namelist</a>
+                        </li>
+                        <li class="outer">
+                            <a href="installation.html">First Simulation</a>
+                        </li>
+                        <li >
+                            <a href="#">Post-Process</a>
+                        </li>
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+            var es=document.getElementsByClassName("menuButton"), i=0;
+            var evt = "ontouchend" in document ? "touchend" : "click";
+            for( var i=0; i<es.length; i+=1 ) {
+                es[i].addEventListener(evt, function(a){ return function(){toggleMenu(a)};}(es[i].parentNode.id));
+            }
+        </script>
+        
+        <div id="searchbox" role="search" style="display:none">
+            <form class="search" action="../search.html" method="get">
+              <input type="text" name="q" placeholder="Search" id="searchinput" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+        
+        <div id="searchicon" onclick="openSearch()" style="display:block">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 80 120">
+              <g transform="translate(0,-932.36216)" >
+                <circle
+                   r="25" cy="977.51044" cx="38.078663"
+                   style="opacity:1;fill:none;stroke:#ffffff;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+                <rect
+                   transform="matrix(0.36717877,0.93015039,-0.93427297,0.35655858,0,0)"
+                   rx="4.9996676" ry="7.4995141"
+                   y="316.16959" x="947.6142"
+                   height="14.117695" width="46.476151"
+                   style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;" />
+                <path
+                   d="m 41.383282,962.25996 a 15,15 0 0 1 11.660107,11.6355"
+                   style="opacity:1;fill:none;stroke:#ffffff;stroke-width:3;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+              </g>
+            </svg>
+        </div>
+        <div id="closesearchicon" onclick="closeSearch()" style="display:none">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 80 120">
+              <g
+                 transform="translate(0,-932.36216)">
+                <path
+                   d="m 10,962.36216 60,60.00004"
+                   style="fill:none;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+                <path
+                   d="M 70,962.36216 10,1022.3622"
+                   style="fill:none;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+              </g>
+            </svg>
+        </div>
+        
+        <div id="smallScreenMenuButton" onclick="toggleSmallScreenMenu(event)">
+            <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"
+               viewBox="-20 -20 140 140">
+              <g  style="fill:#ffffff;stroke:none;">
+                <circle cx="15" cy="20" r="5" />
+                <circle cx="35" cy="20" r="5" />
+                <circle cx="85" cy="20" r="5" />
+                <rect width="50" height="10" x="35" y="15" rx="0" ry="0" />
+                <circle cx="15" cy="40" r="5" />
+                <circle cx="35" cy="40" r="5" />
+                <circle cx="85" cy="40" r="5" />
+                <rect width="50" height="10" x="35" y="35" rx="0" ry="0" />
+                <circle cx="15" cy="60" r="5" />
+                <circle cx="35" cy="60" r="5" />
+                <circle cx="85" cy="60" r="5" />
+                <rect width="50" height="10" x="35" y="55" rx="0" ry="0" />
+                <circle cx="15" cy="80" r="5" />
+                <circle cx="35" cy="80" r="5" />
+                <circle cx="85" cy="80" r="5" />
+                <rect width="50" height="10" x="35" y="75" rx="0" ry="0" />
+              </g>
+            </svg>
+        </div>
+        
+    </div>
+    
+</div>
+</div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="post-process">
+<h1>Post-Process<a class="headerlink" href="#post-process" title="Link to this heading">¶</a></h1>
+<p>Here is a typical example of a post-processing analysis, illustrating how to work with the different output files and highlighting some physical properties.
+The following analysis and results refer to the input file provided in the HarP folder.</p>
+<p>Before proceeding with the post-processing, make sure that the simulation has finished. (If you have not yet run a simulation, refer to the <a class="reference internal" href="installation.html"><span class="doc">First simulation</span></a> section.)</p>
+<p>Once the diagnostics are stored in <strong>HDF5</strong> files, a first analysis can be performed using the Jupyter notebook <code class="docutils literal notranslate"><span class="pre">analysis.ipynb</span></code> provided in the HarP repository.</p>
+<p>Copy the notebook into your working directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>path/to/HarP/analysis.ipynb<span class="w"> </span>.
+</pre></div>
+</div>
+<p>When running the notebook make sure to use the environment generated by <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">dev</span></code> command.</p>
+<p>The first notebook cell defines the physical constants and necessary libraries.</p>
+<hr class="docutils" />
+<section id="load-hdf5-files">
+<h2>Load HDF5 files<a class="headerlink" href="#load-hdf5-files" title="Link to this heading">¶</a></h2>
+<p>The second cell loads the <strong>HDF5</strong> files diagnostics into NumPy arrays named as follows:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">REq</span></code>: the electric field envelope <span class="math notranslate nohighlight">\(\mathcal{E}_q\)</span> at <span class="math notranslate nohighlight">\(z=Lz\)</span>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ceq</span></code>: the energy contained in each harmonic,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Ne</span></code>: the electronic density,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Na</span></code>: the atomic density,</p></li>
+</ul>
+</div></blockquote>
+<p>The logic behind this procedure applies to each of the diagnostics available in the <a class="reference internal" href="namelist.html"><span class="doc">namelist</span></a> and can be understood from the <strong>HDF5</strong> file structure.</p>
+<p>The <strong>HDF5</strong> files associated with the diagnostic class <code class="docutils literal notranslate"><span class="pre">Diagnostic</span></code> are organised as follows.
+The coordinates <code class="docutils literal notranslate"><span class="pre">&quot;r&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;z&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;t&quot;</span></code> are stored as first-level datasets and correspond to the radial, axial and temporal grids over which the data have been saved.</p>
+<p>In the case of a quantity that depends on the harmonic order (such as <span class="math notranslate nohighlight">\(\mathcal{E}_q\)</span>), the data are organized under the first-level groups named <code class="docutils literal notranslate"><span class="pre">&quot;order_XX&quot;</span></code> where <code class="docutils literal notranslate"><span class="pre">XX</span></code> denotes the harmonic order.
+Within each group, the quantity is stored as a series of second-level datasets named <code class="docutils literal notranslate"><span class="pre">&quot;t_j&quot;</span></code> with <span class="math notranslate nohighlight">\(j\)</span> corresponding to the different time steps.
+Each dataset contains a two-dimensional array representing the quantity over the radial and longitudinal grid positions.</p>
+<p>For quantities that are independent of the harmonic order, such as the particle densities, the datasets <code class="docutils literal notranslate"><span class="pre">&quot;t_j&quot;</span></code> are stored directly at the first-level.</p>
+</section>
+<hr class="docutils" />
+<section id="fundamental-field-intensity">
+<h2>Fundamental field intensity<a class="headerlink" href="#fundamental-field-intensity" title="Link to this heading">¶</a></h2>
+<p>The third cell visualizes the intensity of the fundamental envelope field. It produces <a class="reference internal" href="#figfundamental"><span class="std std-numref">Fig. 2</span></a>.</p>
+<figure class="align-center" id="id3">
+<span id="figfundamental"></span><a class="reference internal image-reference" href="../_images/fig_I1.png"><img alt="../_images/fig_I1.png" src="../_images/fig_I1.png" style="width: 90%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Fundamental intensity as a function of <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(r\)</span> at <span class="math notranslate nohighlight">\(z=L\)</span> (left) and as a function of <span class="math notranslate nohighlight">\(t\)</span> at <span class="math notranslate nohighlight">\(r=0\)</span> for <span class="math notranslate nohighlight">\(z=0\)</span> and <span class="math notranslate nohighlight">\(z=L\)</span> (right).</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The left panel shows the intensity as a function of <span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(t\)</span> at the end of the simulation box <span class="math notranslate nohighlight">\(z=L\)</span>.
+The right panel shows the same quantity along the propagation axis <span class="math notranslate nohighlight">\(r=0\)</span>. It shows the field at the beginning of the gas, <span class="math notranslate nohighlight">\(z=0\)</span> (blue), compared with that at the end of the gas, <span class="math notranslate nohighlight">\(z=L\)</span> (red).
+This figure illustrates how the fundamental field evolves as it propagates and ionises the gas, causing it to deviate from its initial Gaussian nature.</p>
+</section>
+<hr class="docutils" />
+<section id="electronic-density">
+<h2>Electronic density<a class="headerlink" href="#electronic-density" title="Link to this heading">¶</a></h2>
+<p>To show the effect of the ionisation, the fourth cell illustrates the electron density at the end of the interaction as a function of <span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(z\)</span>. The cell produces <a class="reference internal" href="#figionisation"><span class="std std-numref">Fig. 3</span></a>.
+As the field has not been modified yet at enter of the gas cell, it reaches higher intensity. Thus, it leads to higher ionisation degree, equivalently electron density.
+Inversely, after longer propagation into the gas cell the field has been dispersed by the electronic density, and is less likely to ionise.</p>
+<figure class="align-center" id="id4">
+<span id="figionisation"></span><a class="reference internal image-reference" href="../_images/fig_Ne.png"><img alt="../_images/fig_Ne.png" src="../_images/fig_Ne.png" style="width: 45%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Ionisation degree at the end of the interaction as a function of <span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(z\)</span>.</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<hr class="docutils" />
+<section id="attosecond-field-intensity">
+<h2>Attosecond field intensity<a class="headerlink" href="#attosecond-field-intensity" title="Link to this heading">¶</a></h2>
+<p>In the HarP approach, the harmonics envelopes are computed only at specific photons energy <span class="math notranslate nohighlight">\(q\hbar \omega\)</span>.
+The real electric field <span class="math notranslate nohighlight">\(\mathcal{E}(t)\)</span> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{E}(t) = \frac{1}{2}\sum_{q} E_q(t) e^{-\mathbf{i} q \omega t}+c.c.\]</div>
+<p>Assuming that we filter only the photons of energy in between <span class="math notranslate nohighlight">\([q_1\hbar \omega ,q_2 \hbar \omega]\)</span>, the reconstructed harmonic field is estimated as:</p>
+<div class="math notranslate nohighlight" id="equation-etimefield">
+<span class="eqno">(6)<a class="headerlink" href="#equation-etimefield" title="Link to this equation">¶</a></span>\[\mathcal{E}(t) = \frac{1}{2}\sum_{q\in [q_1,q_2]} E_q(t) e^{-\mathbf{i} q \omega t}+c.c.\]</div>
+<p>The vector <code class="docutils literal notranslate"><span class="pre">REt</span></code>, defined in the second cell, corresponds to the time-electric field Eq. <a class="reference internal" href="#equation-etimefield">(6)</a> at <span class="math notranslate nohighlight">\(z=L\)</span>. It is calculated for all the different potential lower threshold <span class="math notranslate nohighlight">\(q_1 \in [1,59]\)</span> (odd) with <span class="math notranslate nohighlight">\(q_2=59\)</span> the last computed harmonic.
+The instantaneous time-intensity <span class="math notranslate nohighlight">\(I(t)\)</span> being <span class="math notranslate nohighlight">\(I(t)=\epsilon_0 c \lvert \mathcal{E}(t)\rvert^2\)</span>.
+Considering a high pass filter with <span class="math notranslate nohighlight">\(q_1=23\)</span> (equivalently photon of energy larger than <span class="math notranslate nohighlight">\(\sim 35\)</span> eV), we obtain the harmonic intensity <a class="reference internal" href="#figharmonicintensity"><span class="std std-numref">Fig. 4</span></a> (fifth cell) as a function of <span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(t\)</span> in the left plot and as a function of <span class="math notranslate nohighlight">\(t\)</span> at <span class="math notranslate nohighlight">\(r=0\)</span> in the right one.</p>
+<figure class="align-center" id="id5">
+<span id="figharmonicintensity"></span><a class="reference internal image-reference" href="../_images/fig_Iq.png"><img alt="../_images/fig_Iq.png" src="../_images/fig_Iq.png" style="width: 90%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Harmonic intensity <span class="math notranslate nohighlight">\(\epsilon_0 c/2 \lvert \mathcal{E}(t)\rvert^2\)</span> considering <span class="math notranslate nohighlight">\(q_1=23,q_2=59\)</span> as a function of <span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(t\)</span> (left) and as a function of <span class="math notranslate nohighlight">\(t\)</span> at <span class="math notranslate nohighlight">\(r=0\)</span> (right) at the exit of the target (<span class="math notranslate nohighlight">\(z=L\)</span>).</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Reconstructing the oscillating field itself via Eq. <a class="reference internal" href="#equation-etimefield">(6)</a> requires resolving the fast carrier <span class="math notranslate nohighlight">\(e^{-iq\omega t}\)</span> — an attosecond-scale time grid, much finer than what HarP’s own propagation needs (which only solves for the slowly varying envelopes <span class="math notranslate nohighlight">\(E_q(t)\)</span>).
+The time grid used in this example simulation is too coarse for that: the reconstructed time-electric field in <a class="reference internal" href="#figharmonicintensity"><span class="std std-numref">Fig. 4</span></a> appears undersampled.
+This is a limitation of this particular post-processing step only, not of HarP’s propagation algorithm itself.</p>
+</section>
+<hr class="docutils" />
+<section id="conversion-efficiency">
+<h2>Conversion efficiency<a class="headerlink" href="#conversion-efficiency" title="Link to this heading">¶</a></h2>
+<p>A specific diagnostic that computes the energy inside each harmonic has been implemented in the input file.
+The conversion efficiency, ratio between the harmonic energy and the fundamental one, is shown in <a class="reference internal" href="#figce"><span class="std std-numref">Fig. 5</span></a>, (computed in the sixth cell) as a function of the harmonic order at <span class="math notranslate nohighlight">\(z=L\)</span> (left) and as a function of the propagation distance for <span class="math notranslate nohighlight">\(q=23,27,31\)</span> (right).</p>
+<figure class="align-center" id="id6">
+<span id="figce"></span><a class="reference internal image-reference" href="../_images/fig_CE.png"><img alt="../_images/fig_CE.png" src="../_images/fig_CE.png" style="width: 90%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Conversion efficiency at the end of the target as a function of the photon energy (left) and as a function of the propagation distance for the 23rd, 27th and 31st harmonics (right). The black solid line (left) stands for the three-step cutoff energy.</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The cutoff energy predicted by the three step model <a class="reference internal" href="../theory/references.html#corkum1993" id="id1"><span>[Corkum1993]</span></a>, <a class="reference internal" href="../theory/references.html#kulander1993" id="id2"><span>[Kulander1993]</span></a> is shown in black solid line of the left panel. It reads:</p>
+<div class="math notranslate nohighlight">
+\[\text{E}_{\rm{cutoff}} = I_p +3.17 \frac{e^2 \lvert E_0 \rvert^2 }{4 m_e \omega^2} \sim \left[I_p\right] + 29.6 \left[\frac{I_0}{10^{14} \rm{W/cm}^2}\right]\left[\frac{\lambda}{1 \mu\rm{m}}\right]^2 \rm{eV}.\]</div>
+<p>In Argon the ionisation energy is <span class="math notranslate nohighlight">\(I_p\sim 15.8\)</span> eV. With the laser of wavelength <span class="math notranslate nohighlight">\(\lambda=0.81 \, \mu\)</span> m and peak intensity <span class="math notranslate nohighlight">\(I_0=2.5\times 10^{14}\)</span> W/cm <sup>2</sup>, the cutoff energy is estimated as <span class="math notranslate nohighlight">\(\text{E}_{\rm{cutoff}}\sim 42 \hbar \omega \sim 64\)</span> eV.</p>
+<p>The variation of the CE with the propagation distance arises from the competition among harmonic generation, propagation, and absorption.
+As finding the optimal target configuration is an active subject of research that mainly requires maximising the CE, HarP is designed to enable its efficient evaluation and optimization.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      <div>
+      <a href="https://github.com/HarmonicPropagation/HarP">Github</a>
+      </div>
+      <div>
+        <a href="../citation.html">
+            Cite this work
+        </a>
+      </div>
+      
+      <div>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 9.1.0</a>
+      </div>
+      
+      <div class="footer">
+        Theme by 
+        <a href="https://github.com/SmileiPIC/Smilei">
+            Smilei 5.1
+        </a>
+      </div>
+    </div>
+    
+    <script type="text/javascript">
+        
+        var nav = document.getElementById("nav");
+        var nav_list = document.getElementById("nav_list");
+        var nav_button = document.getElementById("nav_button");
+        var smallScreenMenu = document.getElementById("smallScreenMenu");
+        var smallScreenMenuButton = document.getElementById("smallScreenMenuButton");
+        var searchicon = document.getElementById("searchicon");
+        var searchbox  = document.getElementById("searchbox");
+        var searchinput= document.getElementById("searchinput");
+        var menus = document.getElementsByClassName("menu");
+        for( var i=0; i<menus.length; i++ )
+            menus[i].active = false;
+        
+        
+        var ul = nav_list.getElementsByTagName("ul")[0], li;
+        var keep_nav = false;
+        if( ul ) {
+            li = ul.firstElementChild;
+            if( li ) {
+                if( li.getElementsByTagName("ul").length > 0 ) keep_nav = true;
+            }
+        }
+        if( keep_nav ) {
+            li.removeChild( li.firstElementChild );
+        } else {
+            document.getElementById("nav_positioner").removeChild( document.getElementById("nav") );
+        }
+        
+        function navOff() {
+            nav_list.style.display = "none";
+            nav_button.className = "";
+            nav.style.overflowY = "visible";
+        }
+        
+        function toggleNav() {
+            for( var i=0; i<menus.length; i++ )
+                menuOff( menus[i] );
+            if( nav_list.style.display != "inline-block" ) {
+                nav_list.style.display = "inline-block";
+                nav_button.className = "pushed";
+                nav.style.overflowY = "auto";
+            } else {
+                navOff();
+            }
+        }
+        
+        function toggleSmallScreenMenu(e) {
+            e.preventDefault();
+            if( smallScreenMenu.className != "on" ) {
+                smallScreenMenu.className = "on";
+                smallScreenMenuButton.className = "pushed";
+                document.documentElement.style.overflow = "hidden";
+            } else {
+                smallScreenMenu.className = "off";
+                smallScreenMenuButton.className = "";
+                document.documentElement.style.overflow = "";
+            }
+        }
+        
+        function prepareMenu(menu_id) {
+            var menu = document.getElementById(menu_id);
+            menu.timer1 = setTimeout(function(a){ return function(){thisMenuOnly(a)};}(menu_id), 100);
+            menu.addEventListener("mouseleave", function(a){ return function(){clearTimeout(a.timer1)};}(menu) );
+        }
+        
+        function leaveMenu(menu_id, source) {
+            var menu = document.getElementById(menu_id);
+            menu.timer2 = setTimeout(function(a){ return function(){menuOff(a)};}(menu), 1000);
+            source.addEventListener("mouseenter", function(a){ return function(){clearTimeout(a.timer2)};}(menu) );
+        }
+        
+        function menuOn( menu ) {
+            var divs = menu.getElementsByTagName("div");
+            if(nav_list) navOff();
+            divs[1].className = "on";
+            divs[0].className = "menuButton pushed";
+            menu.active = true;
+        }
+        function menuOff( menu ) {
+            var divs = menu.getElementsByTagName("div");
+            divs[1].className = "off";
+            divs[0].className = "menuButton";
+            menu.active = false;
+        }
+        
+        function thisMenuOnly(menu_id) {
+            var menu = document.getElementById(menu_id);
+            for( var i=0; i<menus.length; i++ )
+                if( i!=menu_id )
+                    menuOff( menus[i] );
+            menuOn( menu );
+        }
+        
+        function toggleMenu(menu_id) {
+            var menu = document.getElementById(menu_id);
+            if( menu.active ) {
+                menuOff( menu );
+            } else {
+                for( var i=0; i<menus.length; i++ )
+                    if( i!=menu_id )
+                        menuOff( menus[i] );
+                menuOn( menu );
+            }
+        }
+        
+        function openSearch() {
+            for( var i=0; i<menus.length; i++ ) {
+                menuOff( menus[i] );
+                menus[i].style.zIndex = "-1";
+            }
+            searchicon.style.display = "none";
+            closesearchicon.style.display = "block";
+            searchbox.style.display = "block";
+            searchinput.focus();
+        }
+        
+        function closeSearch() {
+            searchicon.style.display = "block";
+            closesearchicon.style.display = "none";
+            searchbox .style.display = "none";
+            for( var i=0; i<menus.length; i++ )
+                menus[i].style.zIndex = "0";
+        }
+        
+        
+        var documentDiv = document.getElementsByClassName("document")[0];
+        documentDiv.addEventListener('click', function (event) {
+            if(nav_list) navOff();
+            for( var i=0; i<menus.length; i++ )
+                menuOff( menus[i] );
+        });
+    </script>
+  </body>
+</html>
